@@ -5,6 +5,7 @@ import com.github.javasemantic.commit.retrieval.CommitRetrieval;
 import com.github.javasemantic.degenerator.Degenerator;
 import com.github.javasemantic.domain.DomainFactory;
 import com.github.javasemantic.domain.model.Commit;
+import com.github.javasemantic.domain.model.DirtyCommit;
 import com.github.javasemantic.domain.model.common.Version;
 import com.github.javasemantic.version.manager.VersionManager;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +21,8 @@ public class JavaSemanticServiceImpl implements JavaSemanticService {
   public Version execute() {
     var projectData = DomainFactory.getProjectData();
 
-    for (String rawCommit : commitRetrieval.getCommits()) {
-      var commit = createCommit(rawCommit);
+    for (var dirtyCommit : commitRetrieval.getCommits()) {
+      var commit = createCommit(dirtyCommit);
       var result = commitEngine.execute(commit);
 
       if (result.isValid()) {
@@ -32,14 +33,14 @@ public class JavaSemanticServiceImpl implements JavaSemanticService {
     return versionManager.calculateProjectVersion(projectData);
   }
 
-  private Commit createCommit(String rawCommit) {
-    var components = degenerator.degenerate(rawCommit);
+  private Commit createCommit(DirtyCommit dirtyCommit) {
+    var components = degenerator.degenerate(dirtyCommit);
 
     return Commit
         .builder()
         .commitComponents(components)
         .dirtyVersion(DomainFactory.getVersion())
-        .rawCommit(rawCommit)
+        .dirtyCommit(dirtyCommit)
         .build();
   }
 

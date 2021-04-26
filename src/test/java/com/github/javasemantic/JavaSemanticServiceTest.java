@@ -10,6 +10,7 @@ import com.github.javasemantic.commit.retrieval.CommitRetrieval;
 import com.github.javasemantic.degenerator.Degenerator;
 import com.github.javasemantic.degenerator.DegeneratorFactory;
 import com.github.javasemantic.domain.model.Commit;
+import com.github.javasemantic.domain.model.DirtyCommit;
 import com.github.javasemantic.version.manager.VersionManager;
 import com.github.javasemantic.version.manager.VersionManagerFactory;
 import java.util.Collections;
@@ -50,7 +51,10 @@ public class JavaSemanticServiceTest {
   @Test
   public void when_executeWithData_should_executeWithoutExceptions() {
     when(commitRetrieval.getCommits())
-        .thenReturn(List.of("feat: this should be picked up when code is implemented"));
+        .thenReturn(List.of(DirtyCommit
+            .builder()
+            .message("feat: this should be picked up when code is implemented")
+            .build()));
 
     var version = javaSemanticService.execute();
 

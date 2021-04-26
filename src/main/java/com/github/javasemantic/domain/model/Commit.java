@@ -8,6 +8,6 @@ import lombok.experimental.SuperBuilder;
 public class Commit {
 
   private final Version dirtyVersion;
-  private final String rawCommit;
+  private final DirtyCommit dirtyCommit;
   private final CommitComponents commitComponents;
 }
