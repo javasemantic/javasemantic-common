@@ -1,5 +1,10 @@
 package com.github.javasemantic.domain.model.common;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Version {
 
   private Integer major = 0;
