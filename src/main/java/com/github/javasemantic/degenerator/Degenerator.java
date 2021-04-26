@@ -4,6 +4,6 @@ import com.github.javasemantic.domain.model.common.CommitComponents;
 
 public interface Degenerator {
 
-    CommitComponents degenerate(String commit);
+  CommitComponents degenerate(String commit);
 
 }

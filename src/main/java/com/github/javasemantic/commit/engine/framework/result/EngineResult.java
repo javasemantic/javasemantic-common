@@ -1,7 +1,6 @@
 package com.github.javasemantic.commit.engine.framework.result;
 
 import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,16 +8,16 @@ import lombok.Setter;
 @Setter
 public class EngineResult {
 
-    private List<RuleResult> ruleHistory;
+  private List<RuleResult> ruleHistory;
 
-    public boolean isValid() {
-        return !this.isInvalid();
-    }
+  public boolean isValid() {
+    return !this.isInvalid();
+  }
 
-    public boolean isInvalid() {
-        return ruleHistory
-            .stream()
-            .anyMatch(RuleResult::isInvalid);
-    }
+  public boolean isInvalid() {
+    return ruleHistory
+        .stream()
+        .anyMatch(RuleResult::isInvalid);
+  }
 
 }

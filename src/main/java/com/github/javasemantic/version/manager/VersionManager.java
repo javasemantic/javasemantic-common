@@ -5,6 +5,6 @@ import com.github.javasemantic.domain.model.common.Version;
 
 public interface VersionManager {
 
-    Version calculateProjectVersion(ProjectData projectData);
+  Version calculateProjectVersion(ProjectData projectData);
 
 }

@@ -14,7 +14,6 @@ import com.github.javasemantic.version.manager.VersionManager;
 import com.github.javasemantic.version.manager.VersionManagerFactory;
 import java.util.Collections;
 import java.util.List;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,10 +22,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 public class JavaSemanticServiceTest {
 
-  private JavaSemanticService javaSemanticService;
   private final Degenerator degenerator = DegeneratorFactory.get();
   private final CommitEngine<Commit> commitEngine = CommitEngineFactory.get();
   private final VersionManager versionManager = VersionManagerFactory.get();
+  private JavaSemanticService javaSemanticService;
   private CommitRetrieval commitRetrieval;
 
   @BeforeEach

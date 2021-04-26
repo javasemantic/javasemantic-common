@@ -2,22 +2,21 @@ package com.github.javasemantic.domain;
 
 import com.github.javasemantic.domain.model.ProjectData;
 import com.github.javasemantic.domain.model.common.Version;
+import java.util.function.Supplier;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-
-import java.util.function.Supplier;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DomainFactory {
 
-    private static final Supplier<Version> constructorVersion = Version::new;
-    private static final Supplier<ProjectData> constructorProjectData = ProjectData::new;
+  private static final Supplier<Version> constructorVersion = Version::new;
+  private static final Supplier<ProjectData> constructorProjectData = ProjectData::new;
 
-    public static Version getVersion() {
-        return constructorVersion.get();
-    }
+  public static Version getVersion() {
+    return constructorVersion.get();
+  }
 
-    public static ProjectData getProjectData() {
-        return constructorProjectData.get();
-    }
+  public static ProjectData getProjectData() {
+    return constructorProjectData.get();
+  }
 }

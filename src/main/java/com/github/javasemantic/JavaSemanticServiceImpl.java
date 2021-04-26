@@ -11,35 +11,36 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class JavaSemanticServiceImpl implements JavaSemanticService {
-    private final Degenerator degenerator;
-    private final CommitEngine<Commit> commitEngine;
-    private final VersionManager versionManager;
-    private final CommitRetrieval commitRetrieval;
 
-    public Version execute() {
-        var projectData = DomainFactory.getProjectData();
+  private final Degenerator degenerator;
+  private final CommitEngine<Commit> commitEngine;
+  private final VersionManager versionManager;
+  private final CommitRetrieval commitRetrieval;
 
-        for (String rawCommit: commitRetrieval.getCommits()) {
-            var commit = createCommit(rawCommit);
-            var result = commitEngine.execute(commit);
+  public Version execute() {
+    var projectData = DomainFactory.getProjectData();
 
-            if (result.isValid()) {
-                projectData.getCommits().add(commit);
-            }
-        }
+    for (String rawCommit : commitRetrieval.getCommits()) {
+      var commit = createCommit(rawCommit);
+      var result = commitEngine.execute(commit);
 
-        return versionManager.calculateProjectVersion(projectData);
+      if (result.isValid()) {
+        projectData.getCommits().add(commit);
+      }
     }
 
-    private Commit createCommit(String rawCommit) {
-        var components = degenerator.degenerate(rawCommit);
+    return versionManager.calculateProjectVersion(projectData);
+  }
 
-        return Commit
-                .builder()
-                .commitComponents(components)
-                .dirtyVersion(DomainFactory.getVersion())
-                .rawCommit(rawCommit)
-                .build();
-    }
+  private Commit createCommit(String rawCommit) {
+    var components = degenerator.degenerate(rawCommit);
+
+    return Commit
+        .builder()
+        .commitComponents(components)
+        .dirtyVersion(DomainFactory.getVersion())
+        .rawCommit(rawCommit)
+        .build();
+  }
 
 }

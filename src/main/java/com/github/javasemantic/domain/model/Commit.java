@@ -7,7 +7,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class Commit {
 
-    private final Version dirtyVersion;
-    private final String rawCommit;
-    private final CommitComponents commitComponents;
+  private final Version dirtyVersion;
+  private final String rawCommit;
+  private final CommitComponents commitComponents;
 }

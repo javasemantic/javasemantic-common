@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface CommitRetrieval {
 
-    List<String> getCommits();
+  List<String> getCommits();
 
 }
