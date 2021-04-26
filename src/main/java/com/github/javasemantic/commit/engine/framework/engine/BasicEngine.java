@@ -1,5 +1,6 @@
 package com.github.javasemantic.commit.engine.framework.engine;
 
+import com.github.javasemantic.commit.engine.CommitEngine;
 import com.github.javasemantic.commit.engine.framework.result.EngineResult;
 import com.github.javasemantic.commit.engine.framework.result.RuleResult;
 import com.github.javasemantic.commit.engine.framework.rule.common.BasicRule;
@@ -7,7 +8,8 @@ import com.github.javasemantic.commit.engine.framework.rule.common.BasicRule;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BasicEngine<RuleType extends BasicRule<Argument>, Argument> {
+public abstract class BasicEngine<RuleType extends BasicRule<Argument>, Argument> implements
+        CommitEngine<Argument> {
 
     private final List<RuleResult> history = new ArrayList<>();
 

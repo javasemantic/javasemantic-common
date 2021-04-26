@@ -22,6 +22,8 @@
     <!-- Boilerplate Code -->
     <lombok.version>1.18.18</lombok.version>
     <log4j.version>2.13.3</log4j.version>
+    <!-- Git Integration -->
+    <org.eclipse.jgit.version>5.9.0.202009080501-r</org.eclipse.jgit.version>
   </properties>
 
   <dependencies>
@@ -62,6 +64,14 @@
       <artifactId>mockito-junit-jupiter</artifactId>
       <version>${mockito-core.version}</version>
       <scope>test</scope>
+    </dependency>
+    <!-- -->
+
+    <!-- Git Integration -->
+    <dependency>
+      <groupId>org.eclipse.jgit</groupId>
+      <artifactId>org.eclipse.jgit</artifactId>
+      <version>${org.eclipse.jgit.version}</version>
     </dependency>
     <!-- -->
 

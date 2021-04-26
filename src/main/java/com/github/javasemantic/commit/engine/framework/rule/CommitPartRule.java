@@ -1,13 +1,13 @@
 package com.github.javasemantic.commit.engine.framework.rule;
 
-import com.github.javasemantic.commit.engine.framework.data.object.EngineDataModel;
+import com.github.javasemantic.domain.model.Commit;
 import com.github.javasemantic.commit.engine.framework.enums.RuleStatusEnum;
 import com.github.javasemantic.commit.engine.framework.result.RuleResult;
 import com.github.javasemantic.commit.engine.framework.rule.common.BasicRule;
 
 import java.util.Objects;
 
-public class CommitPartRule extends BasicRule<EngineDataModel> {
+public class CommitPartRule extends BasicRule<Commit> {
 
     private ConventionalValidationRule conventionalValidationRule;
     private StructuralValidationRule structuralValidationRule;
@@ -18,19 +18,19 @@ public class CommitPartRule extends BasicRule<EngineDataModel> {
         .status(RuleStatusEnum.NOT_APPLICABLE)
         .build();
 
-    public RuleResult execute(final EngineDataModel engineDataModel) {
-        executeAssociatedRule(structuralValidationRule, engineDataModel);
-        executeAssociatedRule(conventionalValidationRule, engineDataModel);
-        executeAssociatedRule(versionRule, engineDataModel);
+    public RuleResult execute(final Commit commit) {
+        executeAssociatedRule(structuralValidationRule, commit);
+        executeAssociatedRule(conventionalValidationRule, commit);
+        executeAssociatedRule(versionRule, commit);
 
         return ruleResult;
     }
 
-    private void executeAssociatedRule(BasicRule<EngineDataModel> associatedRule,
-                                       final EngineDataModel engineDataModel) {
+    private void executeAssociatedRule(BasicRule<Commit> associatedRule,
+                                       final Commit commit) {
         if (Objects.nonNull(associatedRule)) {
             if (ruleResult.isAppliedOrValid() || ruleResult.isNotApplicable()) {
-                ruleResult = associatedRule.execute(engineDataModel);
+                ruleResult = associatedRule.execute(commit);
             }
         }
     }
