@@ -1,4 +1,4 @@
-package com.github.java.semantic;
+package com.github.javasemantic;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

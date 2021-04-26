@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.github.java.semantic</groupId>
+  <groupId>com.github.javasemantic</groupId>
   <artifactId>java-semantic-common</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
@@ -19,9 +19,22 @@
     <junit-jupiter.version>5.7.1</junit-jupiter.version>
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <mockito-core.version>3.3.3</mockito-core.version>
+    <!-- Boilerplate Code -->
+    <lombok.version>1.18.18</lombok.version>
+    <log4j.version>2.13.3</log4j.version>
   </properties>
 
   <dependencies>
+
+    <!-- Boilerplate Code -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- -->
+
     <!-- Testing -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -58,6 +71,27 @@
 
     <pluginManagement>
       <plugins>
+
+        <!-- Compiler -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.1</version>
+          <configuration>
+            <source>${java.version}</source>
+            <target>${java.version}</target>
+            <!-- Boilerplate Code -->
+            <annotationProcessorPaths>
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+              </path>
+            </annotationProcessorPaths>
+            <!-- -->
+          </configuration>
+        </plugin>
+        <!-- -->
 
         <!-- Testing -->
         <plugin>

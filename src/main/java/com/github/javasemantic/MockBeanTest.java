@@ -1,4 +1,4 @@
-package com.github.java.semantic;
+package com.github.javasemantic;
 
 public interface MockBeanTest {
 
