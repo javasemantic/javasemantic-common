@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class ProjectData {
 
-  private final Version projectVersion = DomainFactory.getVersion();
-  private final List<Commit> commits = new ArrayList<>();
+  private Version projectVersion = DomainFactory.getVersion();
+  private List<Commit> commits = new ArrayList<>();
 
 }

@@ -14,7 +14,8 @@ public class VersionManagerImpl implements VersionManager {
     for (var commit: projectData.getCommits()) {
       addVersionToProject(normaliseCommit(commit));
     }
-    return finalProjectVersion;
+    projectData.setProjectVersion(finalProjectVersion);
+    return projectData.getProjectVersion();
   }
 
   private Version normaliseCommit(Commit commit){
@@ -29,9 +30,19 @@ public class VersionManagerImpl implements VersionManager {
   }
 
   private void addVersionToProject(Version commitVersion){
-    finalProjectVersion.setMajor(finalProjectVersion.getMajor() + commitVersion.getMajor());
-    finalProjectVersion.setMinor(finalProjectVersion.getMinor() + commitVersion.getMinor());
-    finalProjectVersion.setPatch(finalProjectVersion.getPatch() + commitVersion.getPatch());
+    if(commitVersion.getMajor() == 1){
+      finalProjectVersion.setMajor(finalProjectVersion.getMajor()
+          + commitVersion.getMajor());
+      finalProjectVersion.setMinor(0);
+      finalProjectVersion.setPatch(0);
+    } else if(commitVersion.getMinor() == 1){
+      finalProjectVersion.setMinor(finalProjectVersion.getMinor()
+          + commitVersion.getMinor());
+      finalProjectVersion.setPatch(0);
+    }else if(commitVersion.getPatch() == 1){
+      finalProjectVersion.setPatch(finalProjectVersion.getPatch()
+          + commitVersion.getPatch());
+    }
   }
 
 }
