@@ -2,9 +2,11 @@ package com.github.javasemantic.commit.engine.factory;
 
 import com.github.javasemantic.commit.engine.factory.enums.ConventionalRuleEnum;
 import com.github.javasemantic.commit.engine.factory.enums.StructuralRuleEnum;
+import com.github.javasemantic.commit.engine.factory.enums.VersionRuleEnum;
 import com.github.javasemantic.commit.engine.framework.rule.CommitPartRule;
 import com.github.javasemantic.commit.engine.framework.rule.ConventionalValidationRule;
 import com.github.javasemantic.commit.engine.framework.rule.StructuralValidationRule;
+import com.github.javasemantic.commit.engine.framework.rule.VersionRule;
 import java.util.function.Supplier;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -23,6 +25,10 @@ public class RuleFactory {
   }
 
   public static StructuralValidationRule get(StructuralRuleEnum type) {
+    return type.getConstructor().get();
+  }
+
+  public static VersionRule get(VersionRuleEnum type) {
     return type.getConstructor().get();
   }
 }
