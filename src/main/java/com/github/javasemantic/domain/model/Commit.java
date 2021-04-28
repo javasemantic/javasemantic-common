@@ -9,11 +9,12 @@ import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
 @Getter
+@Setter
 public class Commit {
 
-  @Setter
   private TypeEnum typeEnum;
   private final Version dirtyVersion;
   private final String rawCommit;
   private final CommitComponents commitComponents;
+
 }
