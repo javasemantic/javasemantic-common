@@ -18,11 +18,9 @@ public class StructuralRule extends StructuralValidationRule {
   @Override
   protected RuleResult run(Commit commit) {
 
-    var status = RuleStatusEnum.INVALID;
-
-    if (predicate.test(commit.getCommitComponents())) {
-      status = RuleStatusEnum.VALID;
-    }
+    var status = predicate.test(commit.getCommitComponents())
+        ? RuleStatusEnum.VALID
+        : RuleStatusEnum.INVALID;
 
     return RuleResult.builder().status(status).build();
   }

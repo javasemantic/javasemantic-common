@@ -81,7 +81,7 @@ public class ConventionalRuleEnumTest {
     var conventionalValidationRule = ConventionalRuleEnum.BREAKING_CHANGE_RULE.getConstructor()
         .get();
     Commit commit = Commit.builder()
-        .commitComponents(CommitComponents.builder().exclamation("!").build()).build();
+        .commitComponents(CommitComponents.builder().exclamation(true).build()).build();
 
     //When
     var actual = conventionalValidationRule.execute(commit);

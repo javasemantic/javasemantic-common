@@ -13,7 +13,7 @@ public enum ConventionalRuleEnum {
   TYPE_RULE(TypeConventionalRule::new),
 
   BREAKING_CHANGE_RULE(() -> new OptionalConventionalRule((commitComponent) ->
-      "!".equals(commitComponent.getExclamation()) || (commitComponent.getBody() != null
+      commitComponent.isExclamation() || (commitComponent.getBody() != null
           && commitComponent.getBody().contains("BREAKING CHANGE"))
   ));
 

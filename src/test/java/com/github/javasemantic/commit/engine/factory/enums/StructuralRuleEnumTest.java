@@ -98,7 +98,7 @@ public class StructuralRuleEnumTest {
     var structuralValidationRule = StructuralRuleEnum.COLON_RULE.getConstructor().get();
     Commit commit = Commit.builder().commitComponents(CommitComponents
         .builder()
-        .colon(":")
+        .colon(true)
         .build()).build();
 
     //When
@@ -161,7 +161,7 @@ public class StructuralRuleEnumTest {
     var structuralValidationRule = StructuralRuleEnum.OPTIONAL_EXCLAMATION_RULE.getConstructor().get();
     Commit commit = Commit.builder().commitComponents(CommitComponents
         .builder()
-        .exclamation("!")
+        .exclamation(true)
         .build()).build();
 
     //When
@@ -193,7 +193,7 @@ public class StructuralRuleEnumTest {
     var structuralValidationRule = StructuralRuleEnum.EXCLAMATION_RULE.getConstructor().get();
     Commit commit = Commit.builder().commitComponents(CommitComponents
         .builder()
-        .exclamation("!")
+        .exclamation(true)
         .build()).build();
 
     //When

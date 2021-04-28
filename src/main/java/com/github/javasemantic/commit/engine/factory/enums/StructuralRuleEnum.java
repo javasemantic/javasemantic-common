@@ -3,6 +3,7 @@ package com.github.javasemantic.commit.engine.factory.enums;
 import com.github.javasemantic.commit.engine.framework.rule.StructuralValidationRule;
 import com.github.javasemantic.commit.engine.rules.commit.rules.structure.OptionalStructuralRule;
 import com.github.javasemantic.commit.engine.rules.commit.rules.structure.StructuralRule;
+import com.github.javasemantic.domain.model.common.CommitComponents;
 import java.util.Objects;
 import java.util.function.Supplier;
 import lombok.Getter;
@@ -18,7 +19,7 @@ public enum StructuralRuleEnum {
       () -> new OptionalStructuralRule(
           (commitComponent) ->  Objects.nonNull(commitComponent) && Objects.nonNull(commitComponent.getBody()))),
   COLON_RULE(
-      () -> new StructuralRule((commitComponent) ->  Objects.nonNull(commitComponent) && Objects.nonNull(commitComponent.getColon()))),
+      () -> new StructuralRule(CommitComponents::isColon)),
   DESCRIPTION_RULE(() -> new StructuralRule(
       (commitComponent) ->  Objects.nonNull(commitComponent) && Objects.nonNull(commitComponent.getDescription()))),
   OPTIONAL_SCOPE_RULE(() -> new OptionalStructuralRule(
@@ -27,8 +28,8 @@ public enum StructuralRuleEnum {
       (commitComponent) -> commitComponent.getScope().matches("\\(.+\\)"))),
 
   OPTIONAL_EXCLAMATION_RULE(() -> new OptionalStructuralRule(
-      (commitComponent) ->  Objects.nonNull(commitComponent) && Objects.nonNull(commitComponent.getExclamation()))),
-  EXCLAMATION_RULE(() -> new StructuralRule((commitComponent) -> "!".equals(commitComponent.getExclamation())));
+      CommitComponents::isExclamation)),
+  EXCLAMATION_RULE(() -> new StructuralRule(CommitComponents::isExclamation));
 
   private final Supplier<StructuralValidationRule> constructor;
 }

@@ -9,18 +9,16 @@ import java.util.function.Predicate;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class OptionalStructuralRule  extends StructuralValidationRule {
+public class OptionalStructuralRule extends StructuralValidationRule {
 
   private final Predicate<CommitComponents> predicate;
 
   @Override
   protected RuleResult run(Commit commit) {
 
-    var status = RuleStatusEnum.NOT_APPLICABLE;
-
-    if (predicate.test(commit.getCommitComponents())) {
-      status = RuleStatusEnum.VALID;
-    }
+    var status = predicate.test(commit.getCommitComponents())
+        ? RuleStatusEnum.VALID
+        : RuleStatusEnum.NOT_APPLICABLE;
 
     return RuleResult.builder().status(status).build();
   }
