@@ -4,12 +4,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.github.javasemantic</groupId>
-  <artifactId>java-semantic-common</artifactId>
+  <groupId>io.github.javasemantic</groupId>
+  <artifactId>javasemantic-common</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
-  <name>java-semantic-common</name>
-  <url>https://github.com/java-semantic</url>
+  <name>javasemantic</name>
+  <url>https://javasemantic.github.io/</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -112,5 +112,52 @@
     </pluginManagement>
 
   </build>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+
+  <licenses>
+    <license>
+      <name>GPL-3.0 License</name>
+      <url>https://github.com/javasemantic/javasemantic-common/blob/main/LICENSE</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>coenraadhuman</id>
+      <name>Coenraad Human</name>
+      <email>coen.human@gmail.com</email>
+    </developer>
+    <developer>
+      <id>KreasonAaronNaidoo</id>
+      <name>Kreason Aaron Naidoo</name>
+      <email>kreasonaaronnaidoo@gmail.com</email>
+    </developer>
+    <developer>
+      <id>MorneVenter</id>
+      <name>Morne Venter</name>
+      <email>morneventer.mv@gmail.com</email>
+    </developer>
+    <developer>
+      <id>FuzzyMongoose</id>
+      <name>Matteo Lovisa</name>
+      <email>matlo.lo27@gmail.com</email>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git@github.com:javasemantic/javasemantic-common.git</connection>
+    <developerConnection>scm:git:git@github.com:javasemantic/javasemantic-common.git</developerConnection>
+    <url>https://github.com/javasemantic/javasemantic-common</url>
+  </scm>
 
 </project>
