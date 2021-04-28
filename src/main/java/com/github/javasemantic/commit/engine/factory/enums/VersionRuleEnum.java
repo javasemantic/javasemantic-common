@@ -1,0 +1,35 @@
+package com.github.javasemantic.commit.engine.factory.enums;
+
+import com.github.javasemantic.commit.engine.framework.rule.VersionRule;
+import com.github.javasemantic.commit.engine.rules.commit.rules.version.SemanticVersion;
+import com.github.javasemantic.commit.engine.rules.commit.rules.version.StatefulSemanticVersion;
+import com.github.javasemantic.commit.engine.rules.common.TypeEnum;
+import java.util.function.Supplier;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
+public enum VersionRuleEnum {
+
+  FEAT_RULE(() -> new SemanticVersion(TypeEnum.FEAT)),
+  CHORE_RULE(() -> new SemanticVersion(TypeEnum.CHORE)),
+  CI_RULE(() -> new SemanticVersion(TypeEnum.CI)),
+  DEPRECATED_RULE(() -> new SemanticVersion(TypeEnum.DEPRECATED)),
+  BUILD_RULE(() -> new SemanticVersion(TypeEnum.BUILD)),
+  DOCS_RULE(() -> new SemanticVersion(TypeEnum.DOCS)),
+  FIX_RULE(() -> new SemanticVersion(TypeEnum.FIX)),
+  PERF_RULE(() -> new SemanticVersion(TypeEnum.PERF)),
+  REVERT_RULE(() -> new SemanticVersion(TypeEnum.REVERT)),
+  STYLE_RULE(() -> new SemanticVersion(TypeEnum.STYLE)),
+  TEST_RULE(() -> new SemanticVersion(TypeEnum.TEST)),
+  REFACTOR_RULE(() -> new SemanticVersion(TypeEnum.REFACTOR)),
+
+
+  //Todo Might not need the above enums -- refactor
+  BREAKING_CHANGE_RULE(() -> new SemanticVersion(TypeEnum.BREAKING_CHANGE)),
+  VERSION_RULE_ENUM(StatefulSemanticVersion::new);
+
+  private final Supplier<VersionRule> constructor;
+
+}
