@@ -4,6 +4,7 @@ package com.github.javasemantic.commit.engine;
 import com.github.javasemantic.commit.engine.factory.RuleFactory;
 import com.github.javasemantic.commit.engine.factory.enums.ConventionalRuleEnum;
 import com.github.javasemantic.commit.engine.factory.enums.StructuralRuleEnum;
+import com.github.javasemantic.commit.engine.factory.enums.VersionRuleEnum;
 import com.github.javasemantic.commit.engine.framework.engine.BasicEngine;
 import com.github.javasemantic.commit.engine.framework.rule.CommitPartRule;
 import com.github.javasemantic.domain.model.Commit;
@@ -14,27 +15,44 @@ public class CommitEngineImpl extends BasicEngine<CommitPartRule, Commit> {
   @Override
   public List<CommitPartRule> assignRules() {
     return List.of(
-        RuleFactory.getCommitPartRule()
-            .setConventionalValidationRule(
-                RuleFactory.get(ConventionalRuleEnum.TYPE_RULE)
-            )
-            .setStructuralValidationRule(
-                RuleFactory.get(
-                    StructuralRuleEnum.TYPE_RULE) // optional null -> not applicable, otherwise applicable
-                    .addChild(RuleFactory.get(StructuralRuleEnum.CASING_RULE))
-                // further structural validation (no need for null check)
-            ),
 
-        RuleFactory.getCommitPartRule()
+        RuleFactory
+            .getCommitPartRule()
+            .setStructuralValidationRule(RuleFactory
+                .get(StructuralRuleEnum.TYPE_RULE)) // mandatory -> null = invalid otherwise valid
+            // further structural validation (no need for null check)
+            .setConventionalValidationRule(RuleFactory.get(ConventionalRuleEnum.TYPE_RULE))
+            .setVersionRule((RuleFactory.get(VersionRuleEnum.VERSION_RULE_ENUM))),
+
+        //Does multiple Breaking change rules mean multiple major changes?
+        RuleFactory
+            .getCommitPartRule()
+            .setStructuralValidationRule(RuleFactory.get(StructuralRuleEnum.OPTIONAL_EXCLAMATION_RULE)
+                .addChild(RuleFactory.get(StructuralRuleEnum.EXCLAMATION_RULE)))
             .setConventionalValidationRule(
-                RuleFactory.get(ConventionalRuleEnum.MESSAGE_RULE)
-            )
-            .setStructuralValidationRule(
-                RuleFactory.get(
-                    StructuralRuleEnum.MESSAGE_RULE) // mandatory -> null = invalid otherwise valid
-                    .addChild(RuleFactory.get(StructuralRuleEnum.CASING_RULE))
-                // further structural validation (no need for null check)
-            )
+                RuleFactory.get(ConventionalRuleEnum.BREAKING_CHANGE_RULE))
+            .setVersionRule((RuleFactory.get(VersionRuleEnum.BREAKING_CHANGE_RULE))),
+
+        RuleFactory
+            .getCommitPartRule()
+            .setStructuralValidationRule(RuleFactory.get(StructuralRuleEnum.OPTIONAL_SCOPE_RULE)
+                .addChild(RuleFactory.get(StructuralRuleEnum.SCOPE_RULE))),
+
+        RuleFactory
+            .getCommitPartRule()
+            .setStructuralValidationRule(RuleFactory.get(StructuralRuleEnum.COLON_RULE)),
+
+        RuleFactory
+            .getCommitPartRule()
+            .setStructuralValidationRule(RuleFactory.get(StructuralRuleEnum.DESCRIPTION_RULE)),
+
+        //Does multiple Breaking change rules mean multiple major changes?
+        RuleFactory
+            .getCommitPartRule()
+            .setStructuralValidationRule(RuleFactory.get(StructuralRuleEnum.BODY_RULE))
+            .setConventionalValidationRule(
+                RuleFactory.get(ConventionalRuleEnum.BREAKING_CHANGE_RULE))
+            .setVersionRule((RuleFactory.get(VersionRuleEnum.BREAKING_CHANGE_RULE)))
     );
   }
 

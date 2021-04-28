@@ -1,5 +1,14 @@
 package com.github.javasemantic.domain.model.common;
 
+import com.github.javasemantic.commit.engine.rules.common.TypeEnum;
+
+import lombok.Getter;
+
+import static com.github.javasemantic.commit.engine.rules.common.ReleaseEnum.MAJOR;
+import static com.github.javasemantic.commit.engine.rules.common.ReleaseEnum.MINOR;
+import static com.github.javasemantic.commit.engine.rules.common.ReleaseEnum.PATCH;
+
+@Getter
 public class Version {
 
   private Integer major = 0;
@@ -9,5 +18,15 @@ public class Version {
   @Override
   public String toString() {
     return String.format("%d.%d.%d", major, minor, patch);
+  }
+
+  public void addVersion(TypeEnum typeEnum) {
+    if (MAJOR.equals(typeEnum.getRelease())) {
+      this.major += 1;
+    } else if (MINOR.equals(typeEnum.getRelease())) {
+      this.minor += 1;
+    } else if (PATCH.equals(typeEnum.getRelease())) {
+      this.patch += 1;
+    }
   }
 }
