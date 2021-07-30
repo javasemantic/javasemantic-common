@@ -16,7 +16,7 @@ public class OptionalConventionalRule extends ConventionalValidationRule {
   @Override
   protected RuleResult run(Commit commit) {
 
-    var ruleStatusEnum = RuleStatusEnum.NOT_APPLICABLE;
+    var ruleStatusEnum = RuleStatusEnum.INVALID;
 
     if (predicate.test(commit.getCommitComponents())) {
       ruleStatusEnum = RuleStatusEnum.VALID;

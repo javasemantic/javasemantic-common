@@ -1,12 +1,18 @@
 package io.github.javasemantic.commit.engine.framework.rule.common;
 
 import io.github.javasemantic.commit.engine.framework.result.RuleResult;
+import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ParentRule<Argument> extends BasicRule<Argument> {
 
-  protected final List<BasicRule<Argument>> childrenRules = new ArrayList<>();
+  public ParentRule<Argument> setChildrenRules(List<BasicRule<Argument>> childrenRules) {
+    this.childrenRules = childrenRules;
+    return this;
+  }
+
+  public List<BasicRule<Argument>> childrenRules = new ArrayList<>();
 
   @Override
   public RuleResult execute(final Argument argument) {
