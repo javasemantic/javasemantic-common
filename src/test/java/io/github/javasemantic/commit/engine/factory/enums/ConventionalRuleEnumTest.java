@@ -119,7 +119,7 @@ public class ConventionalRuleEnumTest {
     var actual = conventionalValidationRule.execute(commit);
 
     //Then
-    assertTrue(actual.isNotApplicable());
+    assertTrue(actual.isInvalid());
   }
 
 }

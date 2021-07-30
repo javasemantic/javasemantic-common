@@ -35,7 +35,7 @@ public class OptionalConventionalRuleTest {
 
     //Then
 
-    assertTrue(actual.isNotApplicable());
+    assertTrue(actual.isInvalid());
   }
 
 }

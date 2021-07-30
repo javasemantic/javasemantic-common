@@ -34,7 +34,7 @@ public class IntegrationTest {
     @Override
     public List<DirtyCommit> getCommits() {
       return List.of(
-          DirtyCommit.builder().message("feat!: Chicken code").build(), //100
+          DirtyCommit.builder().message("feat!: Chicken code").build(),//100
           DirtyCommit.builder().message("feat!: a breaking feature").build(),//200
           DirtyCommit.builder().message("fix: a random fix").build(),//201
           DirtyCommit.builder().message("fix(not really): help Kreason insert commits to free Britney").build(),//202
