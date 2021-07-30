@@ -4,7 +4,6 @@ import io.github.javasemantic.commit.engine.framework.enums.RuleStatusEnum;
 import io.github.javasemantic.commit.engine.framework.result.RuleResult;
 import io.github.javasemantic.commit.engine.framework.rule.VersionRule;
 import io.github.javasemantic.domain.model.Commit;
-
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -15,7 +14,7 @@ public class StatefulSemanticVersion extends VersionRule {
 
     commit.getDirtyVersion().addVersion(commit.getTypeEnum());
 
-    return  RuleResult.builder().status(RuleStatusEnum.VALID).build();
+    return RuleResult.builder().status(RuleStatusEnum.VALID).build();
   }
 
 }

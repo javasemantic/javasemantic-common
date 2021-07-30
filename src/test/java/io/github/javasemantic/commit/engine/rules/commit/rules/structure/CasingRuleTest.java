@@ -1,21 +1,21 @@
 package io.github.javasemantic.commit.engine.rules.commit.rules.structure;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import io.github.javasemantic.domain.model.Commit;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
 public class CasingRuleTest {
 
 
   @Test
-  void when_given_valid_commit(){
+  void when_given_valid_commit() {
 
     //Given
-    var casingRule = new CasingRule((a)->true);
+    var casingRule = new CasingRule((a) -> true);
 
     //When
     var actual = casingRule.execute(Commit.builder().build());
@@ -26,10 +26,10 @@ public class CasingRuleTest {
   }
 
   @Test
-  void when_given_invalid_commit(){
+  void when_given_invalid_commit() {
 
     //Given
-    var casingRule = new CasingRule((a)->false);
+    var casingRule = new CasingRule((a) -> false);
 
     //When
     var actual = casingRule.execute(Commit.builder().build());

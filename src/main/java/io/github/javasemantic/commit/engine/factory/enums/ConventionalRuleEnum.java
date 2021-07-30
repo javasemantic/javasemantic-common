@@ -3,8 +3,8 @@ package io.github.javasemantic.commit.engine.factory.enums;
 import io.github.javasemantic.commit.engine.framework.rule.ConventionalValidationRule;
 import io.github.javasemantic.commit.engine.rules.commit.rules.convetional.OptionalConventionalRule;
 import io.github.javasemantic.commit.engine.rules.commit.rules.convetional.TypeConventionalRule;
-import java.util.function.Supplier;
 import io.github.javasemantic.domain.model.common.CommitComponents;
+import java.util.function.Supplier;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

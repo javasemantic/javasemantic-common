@@ -1,20 +1,20 @@
 package io.github.javasemantic.commit.engine.rules.commit.rules.convetional;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import io.github.javasemantic.domain.model.Commit;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 @ExtendWith(MockitoExtension.class)
 public class OptionalConventionalRuleTest {
 
   @Test
-  void when_given_valid_commit(){
+  void when_given_valid_commit() {
 
     //Given
-    var rule = new OptionalConventionalRule((a)->true);
+    var rule = new OptionalConventionalRule((a) -> true);
 
     //When
     var actual = rule.execute(Commit.builder().build());
@@ -25,10 +25,10 @@ public class OptionalConventionalRuleTest {
   }
 
   @Test
-  void when_given_isNotApplicable_commit(){
+  void when_given_isNotApplicable_commit() {
 
     //Given
-    var rule = new OptionalConventionalRule((a)->false);
+    var rule = new OptionalConventionalRule((a) -> false);
 
     //When
     var actual = rule.execute(Commit.builder().build());

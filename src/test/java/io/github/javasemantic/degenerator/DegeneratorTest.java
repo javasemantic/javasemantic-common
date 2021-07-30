@@ -1,12 +1,11 @@
 package io.github.javasemantic.degenerator;
 
-import org.junit.jupiter.api.Test;
-import java.util.List;
-import io.github.javasemantic.domain.model.DirtyCommit;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import io.github.javasemantic.domain.model.DirtyCommit;
+import org.junit.jupiter.api.Test;
 
 public class DegeneratorTest {
 
@@ -23,7 +22,7 @@ public class DegeneratorTest {
             .build());
 
     assertEquals("chore", degeneratedCommit.getType());
-    assertTrue( degeneratedCommit.isExclamation());
+    assertTrue(degeneratedCommit.isExclamation());
     assertEquals("", degeneratedCommit.getScope());
     assertTrue(degeneratedCommit.isColon());
     assertTrue(degeneratedCommit.isWhitespace());
@@ -42,7 +41,7 @@ public class DegeneratorTest {
             .build());
 
     assertEquals("chore", degeneratedCommit.getType());
-    assertFalse( degeneratedCommit.isExclamation());
+    assertFalse(degeneratedCommit.isExclamation());
     assertEquals("", degeneratedCommit.getScope());
     assertTrue(degeneratedCommit.isColon());
     assertTrue(degeneratedCommit.isWhitespace());
@@ -61,7 +60,7 @@ public class DegeneratorTest {
             .build());
 
     assertEquals("chore", degeneratedCommit.getType());
-    assertFalse( degeneratedCommit.isExclamation());
+    assertFalse(degeneratedCommit.isExclamation());
     assertEquals("something", degeneratedCommit.getScope());
     assertTrue(degeneratedCommit.isColon());
     assertTrue(degeneratedCommit.isWhitespace());
@@ -80,7 +79,7 @@ public class DegeneratorTest {
             .build());
 
     assertEquals("chore", degeneratedCommit.getType());
-    assertTrue( degeneratedCommit.isExclamation());
+    assertTrue(degeneratedCommit.isExclamation());
     assertEquals("something", degeneratedCommit.getScope());
     assertTrue(degeneratedCommit.isColon());
     assertTrue(degeneratedCommit.isWhitespace());
@@ -99,7 +98,7 @@ public class DegeneratorTest {
             .build());
 
     assertEquals("", degeneratedCommit.getType());
-    assertFalse( degeneratedCommit.isExclamation());
+    assertFalse(degeneratedCommit.isExclamation());
     assertEquals("", degeneratedCommit.getScope());
     assertFalse(degeneratedCommit.isColon());
     assertFalse(degeneratedCommit.isWhitespace());
@@ -118,7 +117,7 @@ public class DegeneratorTest {
             .build());
 
     assertEquals("", degeneratedCommit.getType());
-    assertFalse( degeneratedCommit.isExclamation());
+    assertFalse(degeneratedCommit.isExclamation());
     assertEquals("", degeneratedCommit.getScope());
     assertFalse(degeneratedCommit.isColon());
     assertFalse(degeneratedCommit.isWhitespace());
@@ -133,11 +132,12 @@ public class DegeneratorTest {
     var degeneratedCommit = this.degenerator
         .degenerate(DirtyCommit
             .builder()
-            .message("chL::DKE~~!!!8gt5euirdlxb564jtguicmasepoeslduf4vlg5itwbduhg7fl,(((((((o:! re!(something) some lgijgbhjfbkhdvskhuvds jdn0))@::::::: actually did something")
+            .message(
+                "chL::DKE~~!!!8gt5euirdlxb564jtguicmasepoeslduf4vlg5itwbduhg7fl,(((((((o:! re!(something) some lgijgbhjfbkhdvskhuvds jdn0))@::::::: actually did something")
             .build());
 
     assertEquals("", degeneratedCommit.getType());
-    assertFalse( degeneratedCommit.isExclamation());
+    assertFalse(degeneratedCommit.isExclamation());
     assertEquals("", degeneratedCommit.getScope());
     assertFalse(degeneratedCommit.isColon());
     assertFalse(degeneratedCommit.isWhitespace());

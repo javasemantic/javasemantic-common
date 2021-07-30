@@ -1,15 +1,15 @@
 package io.github.javasemantic.degenerator;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.regex.Pattern;
-
 import io.github.javasemantic.domain.model.DirtyCommit;
 import io.github.javasemantic.domain.model.common.CommitComponents;
 import io.github.javasemantic.utility.ValidConventionalCommitUtil;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 public class DegeneratorImpl implements Degenerator {
+
+  // Todo: fix bug found where an exclamation mark causes the major version to be incremented twice.
 
   @Override
   public CommitComponents degenerate(DirtyCommit commit) {
@@ -42,6 +42,7 @@ public class DegeneratorImpl implements Degenerator {
   private boolean isValidCommitMessage(final DirtyCommit commit) {
     return ValidConventionalCommitUtil.isValid(commit.getMessage());
   }
+
 
   private String getCommitType(DirtyCommit commit) {
     var preColon = getPreColon(commit);

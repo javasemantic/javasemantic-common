@@ -1,8 +1,8 @@
 package io.github.javasemantic.logging;
 
-import java.lang.reflect.Type;
 import io.github.javasemantic.logging.common.LogLevel;
 import io.github.javasemantic.logging.common.LogObject;
+import java.lang.reflect.Type;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

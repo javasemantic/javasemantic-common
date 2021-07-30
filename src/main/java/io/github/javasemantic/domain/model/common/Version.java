@@ -1,8 +1,7 @@
 package io.github.javasemantic.domain.model.common;
 
-import io.github.javasemantic.commit.engine.rules.common.TypeEnum;
-
 import io.github.javasemantic.commit.engine.rules.common.ReleaseEnum;
+import io.github.javasemantic.commit.engine.rules.common.TypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

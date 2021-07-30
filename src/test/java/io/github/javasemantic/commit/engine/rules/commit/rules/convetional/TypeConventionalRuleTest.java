@@ -1,5 +1,8 @@
 package io.github.javasemantic.commit.engine.rules.commit.rules.convetional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import io.github.javasemantic.commit.engine.rules.common.TypeEnum;
 import io.github.javasemantic.domain.model.Commit;
 import io.github.javasemantic.domain.model.common.CommitComponents;
@@ -7,14 +10,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 @ExtendWith(MockitoExtension.class)
 public class TypeConventionalRuleTest {
 
   @Test
-  void when_given_valid_commit(){
+  void when_given_valid_commit() {
 
     //Given
     var rule = new TypeConventionalRule();
@@ -26,12 +26,12 @@ public class TypeConventionalRuleTest {
 
     //Then
 
-    assertEquals(TypeEnum.FEAT,commit.getTypeEnum());
+    assertEquals(TypeEnum.FEAT, commit.getTypeEnum());
     assertTrue(actual.isAppliedOrValid());
   }
 
   @Test
-  void when_given_isInvalid_commit(){
+  void when_given_isInvalid_commit() {
 
     //Given
     var rule = new TypeConventionalRule();

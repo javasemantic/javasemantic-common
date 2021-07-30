@@ -1,20 +1,18 @@
 package io.github.javasemantic.commit.retrieval;
 
+import io.github.javasemantic.domain.model.DirtyCommit;
+import io.github.javasemantic.logging.Log;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.internal.storage.file.FileRepository;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.FooterLine;
 import org.eclipse.jgit.revwalk.RevCommit;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import io.github.javasemantic.domain.model.DirtyCommit;
-import io.github.javasemantic.logging.Log;
 
 public class JgitCommitRetrievalImpl implements CommitRetrieval {
 

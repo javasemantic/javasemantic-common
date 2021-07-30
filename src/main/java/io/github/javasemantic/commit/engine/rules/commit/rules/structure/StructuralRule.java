@@ -5,9 +5,7 @@ import io.github.javasemantic.commit.engine.framework.result.RuleResult;
 import io.github.javasemantic.commit.engine.framework.rule.StructuralValidationRule;
 import io.github.javasemantic.domain.model.Commit;
 import io.github.javasemantic.domain.model.common.CommitComponents;
-
 import java.util.function.Predicate;
-
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
