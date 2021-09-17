@@ -5,7 +5,6 @@ import io.github.javasemantic.commit.engine.rules.commit.rules.version.SemanticV
 import io.github.javasemantic.commit.engine.rules.commit.rules.version.StatefulSemanticVersion;
 import io.github.javasemantic.commit.engine.rules.common.TypeEnum;
 import java.util.function.Supplier;
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

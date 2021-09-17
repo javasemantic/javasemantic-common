@@ -1,65 +1,52 @@
 package io.github.javasemantic;
 
-import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import io.github.javasemantic.commit.engine.CommitEngineImpl;
+import io.github.javasemantic.commit.retrieval.CommitRetrieval;
+import io.github.javasemantic.degenerator.DegeneratorImpl;
+import io.github.javasemantic.domain.model.DirtyCommit;
+import io.github.javasemantic.version.manager.VersionManagerImpl;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-import io.github.javasemantic.commit.engine.CommitEngine;
-import io.github.javasemantic.commit.engine.CommitEngineFactory;
-import io.github.javasemantic.commit.retrieval.CommitRetrieval;
-import io.github.javasemantic.commit.retrieval.CommitRetrievalFactory;
-import io.github.javasemantic.degenerator.Degenerator;
-import io.github.javasemantic.degenerator.DegeneratorFactory;
-import io.github.javasemantic.domain.model.Commit;
-import io.github.javasemantic.version.manager.VersionManager;
-import io.github.javasemantic.version.manager.VersionManagerFactory;
 
 @ExtendWith(MockitoExtension.class)
 public class JavaSemanticServiceTest {
 
-  private final Degenerator degenerator = DegeneratorFactory.get();
-  private final CommitEngine<Commit> commitEngine = CommitEngineFactory.get();
-  private final VersionManager versionManager = VersionManagerFactory.get();
-  private JavaSemanticService javaSemanticService;
-  private CommitRetrieval commitRetrieval;
-
-  @BeforeEach
-  public void setup() {
-    commitRetrieval = CommitRetrievalFactory.get();//mock(CommitRetrieval.class);
-
-    javaSemanticService = new JavaSemanticServiceImpl(
-        degenerator, commitEngine, versionManager, commitRetrieval
-    );
-  }
-
   @Test
-  void versionSpitOut() {
-    var version = javaSemanticService.execute();
+  void integrationTest() {
 
-    commitRetrieval.getCommits().forEach(x -> System.out.println(x.getMessage() + " " + x.getFooters()));
+    var service = new JavaSemanticServiceImpl(
+        new DegeneratorImpl(),
+        new CommitEngineImpl(),
+        new VersionManagerImpl(),
+        new CommitRetrievalTestImpl()
 
-    System.out.println(version);
+    );
+
+    var version = service.execute();
+
+    assertEquals("3.0.2", version.toString());
   }
 
-//  public void when_executeWithNoData_should_executeWithoutExceptions() {
-//    when(commitRetrieval.getCommits())
-//        .thenReturn(Collections.emptyList());
-//
-//    var version = javaSemanticService.execute();
-//
-//    assertEquals("0.0.0", version.toString());
-//  }
-//
-//  public void when_executeWithData_should_executeWithoutExceptions() {
-//    when(commitRetrieval.getCommits())
-//        .thenReturn(List.of(DirtyCommit
-//            .builder()
-//            .message("feat: this should be picked up when code is implemented")
-//            .build()));
-//
-//    var version = javaSemanticService.execute();
-//
-//    assertEquals("0.0.0", version.toString());
-//  }
+  private class CommitRetrievalTestImpl implements CommitRetrieval {
+
+    @Override
+    public List<DirtyCommit> getCommits() {
+      return List.of(
+          DirtyCommit.builder().message("feat!: Chicken code").build(),//100
+          DirtyCommit.builder().message("feat!: a breaking feature").build(),//200
+          DirtyCommit.builder().message("fix: a random fix").build(),//201
+          DirtyCommit.builder()
+              .message("fix(not really): help Kreason insert commits to free Britney").build(),//202
+          DirtyCommit.builder().message("fix!: Your noon").build(),//300
+          DirtyCommit.builder().message("chore: Do nothing").build(),//301
+          DirtyCommit.builder().message("chore: updated docs").build()//302
+      );
+    }
+  }
+
 
 }

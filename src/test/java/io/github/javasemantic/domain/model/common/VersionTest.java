@@ -1,12 +1,11 @@
 package io.github.javasemantic.domain.model.common;
 
-import io.github.javasemantic.commit.engine.rules.common.TypeEnum;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import io.github.javasemantic.commit.engine.rules.common.TypeEnum;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
 public class VersionTest {

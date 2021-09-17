@@ -1,14 +1,13 @@
 package io.github.javasemantic.commit.engine.factory.enums;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import io.github.javasemantic.domain.model.Commit;
 import io.github.javasemantic.domain.model.common.CommitComponents;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
 public class StructuralRuleEnumTest {
@@ -146,7 +145,8 @@ public class StructuralRuleEnumTest {
   void when_getOptionalExclamationRule_should_notApplicable_for_null() {
 
     //Given
-    var structuralValidationRule = StructuralRuleEnum.OPTIONAL_EXCLAMATION_RULE.getConstructor().get();
+    var structuralValidationRule = StructuralRuleEnum.OPTIONAL_EXCLAMATION_RULE.getConstructor()
+        .get();
     Commit commit = Commit.builder().commitComponents(CommitComponents.builder().build()).build();
 
     //When
@@ -160,7 +160,8 @@ public class StructuralRuleEnumTest {
   void when_getOptionalExclamationRule_should_valid() {
 
     //Given
-    var structuralValidationRule = StructuralRuleEnum.OPTIONAL_EXCLAMATION_RULE.getConstructor().get();
+    var structuralValidationRule = StructuralRuleEnum.OPTIONAL_EXCLAMATION_RULE.getConstructor()
+        .get();
     Commit commit = Commit.builder().commitComponents(CommitComponents
         .builder()
         .exclamation(true)

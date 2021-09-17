@@ -97,7 +97,8 @@ public class ConventionalRuleEnumTest {
     var conventionalValidationRule = ConventionalRuleEnum.BREAKING_BODY_RULE.getConstructor()
         .get();
     Commit commit = Commit.builder().commitComponents(CommitComponents.builder().body(
-        List.of("We are making these changes because I can", " BREAKING CHANGE for you!")).build()).build();
+            List.of("We are making these changes because I can", " BREAKING CHANGE for you!")).build())
+        .build();
 
     //When
     var actual = conventionalValidationRule.execute(commit);

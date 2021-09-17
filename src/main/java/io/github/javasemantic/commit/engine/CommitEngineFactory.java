@@ -2,7 +2,6 @@ package io.github.javasemantic.commit.engine;
 
 import io.github.javasemantic.domain.model.Commit;
 import java.util.function.Supplier;
-
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

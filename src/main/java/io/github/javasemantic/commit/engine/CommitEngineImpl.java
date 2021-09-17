@@ -27,13 +27,16 @@ public class CommitEngineImpl extends BasicEngine<BasicRule<Commit>, Commit> {
 
                 RuleFactory
                     .getCommitPartRule()
-                    .setStructuralValidationRule(RuleFactory.get(StructuralRuleEnum.OPTIONAL_EXCLAMATION_RULE))
-                    .setConventionalValidationRule(RuleFactory.get(ConventionalRuleEnum.BREAKING_EXCLAMATION_RULE))
+                    .setStructuralValidationRule(
+                        RuleFactory.get(StructuralRuleEnum.OPTIONAL_EXCLAMATION_RULE))
+                    .setConventionalValidationRule(
+                        RuleFactory.get(ConventionalRuleEnum.BREAKING_EXCLAMATION_RULE))
                     .setVersionRule((RuleFactory.get(VersionRuleEnum.BREAKING_CHANGE_RULE))),
 
                 RuleFactory
                     .getCommitPartRule()
-                    .setStructuralValidationRule(RuleFactory.get(StructuralRuleEnum.OPTIONAL_SCOPE_RULE)),
+                    .setStructuralValidationRule(
+                        RuleFactory.get(StructuralRuleEnum.OPTIONAL_SCOPE_RULE)),
 
                 RuleFactory
                     .getCommitPartRule()
@@ -41,12 +44,14 @@ public class CommitEngineImpl extends BasicEngine<BasicRule<Commit>, Commit> {
 
                 RuleFactory
                     .getCommitPartRule()
-                    .setStructuralValidationRule(RuleFactory.get(StructuralRuleEnum.DESCRIPTION_RULE)),
+                    .setStructuralValidationRule(
+                        RuleFactory.get(StructuralRuleEnum.DESCRIPTION_RULE)),
 
                 RuleFactory
                     .getCommitPartRule()
                     .setStructuralValidationRule(RuleFactory.get(StructuralRuleEnum.BODY_RULE))
-                    .setConventionalValidationRule(RuleFactory.get(ConventionalRuleEnum.BREAKING_BODY_RULE))
+                    .setConventionalValidationRule(
+                        RuleFactory.get(ConventionalRuleEnum.BREAKING_BODY_RULE))
                     .setVersionRule((RuleFactory.get(VersionRuleEnum.BREAKING_CHANGE_RULE)))
             )
         )

@@ -1,32 +1,29 @@
 package io.github.javasemantic.commit.engine;
 
-import org.junit.jupiter.api.Test;
-import java.util.List;
-import io.github.javasemantic.commit.engine.framework.rule.CommitPartRule;
-import io.github.javasemantic.commit.engine.rules.common.TypeEnum;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import io.github.javasemantic.domain.model.Commit;
 import io.github.javasemantic.domain.model.DirtyCommit;
 import io.github.javasemantic.domain.model.ProjectData;
 import io.github.javasemantic.domain.model.common.CommitComponents;
 import io.github.javasemantic.domain.model.common.Version;
-import io.github.javasemantic.version.manager.VersionManager;
 import io.github.javasemantic.version.manager.VersionManagerImpl;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 public class CommitEngineTest {
 
-  private CommitEngine<Commit> commitEngine = CommitEngineFactory.get();
+  private final CommitEngine<Commit> commitEngine = CommitEngineFactory.get();
 
 
   @Test
-  void version_update_test(){
+  void version_update_test() {
 
-    Commit commit =  Commit.builder()
+    Commit commit = Commit.builder()
         .dirtyCommit(
             DirtyCommit.builder()
                 .message("fix: BOOOO")
-            .build()
+                .build()
         )
         .commitComponents(CommitComponents.builder()
             .description("BOOOO")
@@ -52,9 +49,9 @@ public class CommitEngineTest {
   }
 
   @Test
-  void multiple_commit_test(){
+  void multiple_commit_test() {
 
-    Commit commit1 =  Commit.builder()
+    Commit commit1 = Commit.builder()
         .dirtyCommit(
             DirtyCommit.builder()
                 .message("fix: BOOOO")
@@ -71,7 +68,7 @@ public class CommitEngineTest {
         .dirtyVersion(new Version())
         .build();
 
-    Commit commit2 =  Commit.builder()
+    Commit commit2 = Commit.builder()
         .dirtyCommit(
             DirtyCommit.builder()
                 .message("feat: BOOOO")
@@ -88,7 +85,7 @@ public class CommitEngineTest {
         .dirtyVersion(new Version())
         .build();
 
-    Commit commit3 =  Commit.builder()
+    Commit commit3 = Commit.builder()
         .dirtyCommit(
             DirtyCommit.builder()
                 .message("fix: BOOOO")
@@ -112,7 +109,6 @@ public class CommitEngineTest {
     var versionManager = new VersionManagerImpl();
     var projectData = new ProjectData();
     projectData.setCommits(List.of(commit1, commit2, commit3));
-
 
     var cleanResult = versionManager.calculateProjectVersion(projectData);
 

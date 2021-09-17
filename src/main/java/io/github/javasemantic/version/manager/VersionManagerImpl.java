@@ -11,14 +11,16 @@ public class VersionManagerImpl implements VersionManager {
 
   @Override
   public Version calculateProjectVersion(ProjectData projectData) {
-    for (var commit: projectData.getCommits()) {
+    for (var commit : projectData.getCommits()) {
       addVersionToProject(normaliseCommit(commit));
     }
     projectData.setProjectVersion(finalProjectVersion);
     return projectData.getProjectVersion();
   }
 
-  private Version normaliseCommit(Commit commit){
+  private Version normaliseCommit(Commit commit) {
+    // Todo: recheck this, one thing noted is that version can't be less 0
+
     var commitVersion = commit.getDirtyVersion();
     commitVersion.setMajor(commitVersion.getMajor() >= 1 ? 1 : 0);
     commitVersion.setMinor(commitVersion.getMinor() >= 1
@@ -29,17 +31,17 @@ public class VersionManagerImpl implements VersionManager {
     return commitVersion;
   }
 
-  private void addVersionToProject(Version commitVersion){
-    if(commitVersion.getMajor() == 1){
+  private void addVersionToProject(Version commitVersion) {
+    if (commitVersion.getMajor() == 1) {
       finalProjectVersion.setMajor(finalProjectVersion.getMajor()
           + commitVersion.getMajor());
       finalProjectVersion.setMinor(0);
       finalProjectVersion.setPatch(0);
-    } else if(commitVersion.getMinor() == 1){
+    } else if (commitVersion.getMinor() == 1) {
       finalProjectVersion.setMinor(finalProjectVersion.getMinor()
           + commitVersion.getMinor());
       finalProjectVersion.setPatch(0);
-    }else if(commitVersion.getPatch() == 1){
+    } else if (commitVersion.getPatch() == 1) {
       finalProjectVersion.setPatch(finalProjectVersion.getPatch()
           + commitVersion.getPatch());
     }

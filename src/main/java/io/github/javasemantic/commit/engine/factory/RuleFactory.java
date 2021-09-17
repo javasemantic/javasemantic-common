@@ -8,7 +8,6 @@ import io.github.javasemantic.commit.engine.framework.rule.ConventionalValidatio
 import io.github.javasemantic.commit.engine.framework.rule.StructuralValidationRule;
 import io.github.javasemantic.commit.engine.framework.rule.VersionRule;
 import java.util.function.Supplier;
-
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
