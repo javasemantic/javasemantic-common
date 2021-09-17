@@ -13,4 +13,11 @@ public class ValidConventionalCommitUtil {
         message);
   }
 
+  public static String VALID_LOG_MESSAGE = "The commit message meets the Conventional Commit standard.";
+
+  public static String INVALID_LOG_MESSAGE = "\nThe commit message does not meet the Conventional " +
+                                             "Commit standard\nAn example of a valid message is:" +
+                                             "\n\tfeat(login): add the 'remember me' button\nMore " +
+                                             "details at: https://www.conventionalcommits.org/en/v1.0.0/#summary";
+
 }
