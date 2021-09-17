@@ -4,7 +4,7 @@ import java.util.function.UnaryOperator;
 
 public class TheOriginalFuckUp {
   // File names for hooks:
-  private static final String BASE_PLUGIN_PRE_COMMIT_HOOK = "java-semantic-maven-plugin.commit-msg";
+  private static final String BASE_PLUGIN_PRE_COMMIT_HOOK = "commit-msg";
   private static final String COMMIT_MSG_HOOK_BASE_SCRIPT = "commit-msg";
   // Hook directory name:
 

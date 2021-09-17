@@ -11,7 +11,7 @@ import java.nio.file.Path;
 
 public class InstallHookImpl implements InstallHook {
 
-  private static final String BASE_PLUGIN_PRE_COMMIT_HOOK = "java-semantic-maven-plugin.commit-msg";
+  private static final String BASE_PLUGIN_PRE_COMMIT_HOOK = "commit-msg";
 
   @Override
   public void execute(InstallHookArguments installHookArguments) throws IOException {
