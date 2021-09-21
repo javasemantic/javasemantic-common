@@ -48,5 +48,11 @@ public class JavaSemanticServiceTest {
     }
   }
 
+  @Test
+  public void testAgainstOurGit() {
+    var service = JavaSemanticServiceFactory.get();
+    var version = service.execute();
+    System.out.println(version);
+  }
 
 }

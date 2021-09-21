@@ -36,14 +36,14 @@ public class Log {
   private static LogObject create(LogLevel level, Type type, String message) {
     return LogObject
         .builder()
-        .level(LogLevel.DEBUG)
+        .level(level)
         .message(message)
         .type(type)
         .build();
   }
 
   private static void print(LogObject logObject) {
-    if (logObject.getLevel().equals(assignedLevel)) {
+    if (logObject.getLevel().getNumericValue() <= assignedLevel.getNumericValue()) {
       System.out.printf("[%s] %s: %s%n", logObject.getLevel(), logObject.getType(),
           logObject.getMessage());
     }

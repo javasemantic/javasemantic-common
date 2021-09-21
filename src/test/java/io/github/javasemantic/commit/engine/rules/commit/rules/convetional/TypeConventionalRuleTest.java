@@ -22,7 +22,7 @@ public class TypeConventionalRuleTest {
         Commit.builder().commitComponents(CommitComponents.builder().type("feat").build()).build();
 
     //When
-    var actual = rule.execute(commit);
+    var actual = rule.run(commit);
 
     //Then
 
@@ -39,7 +39,7 @@ public class TypeConventionalRuleTest {
         Commit.builder().commitComponents(CommitComponents.builder().type("booo").build()).build();
 
     //When
-    var actual = rule.execute(commit);
+    var actual = rule.run(commit);
 
     //Then
     assertTrue(actual.isInvalid());

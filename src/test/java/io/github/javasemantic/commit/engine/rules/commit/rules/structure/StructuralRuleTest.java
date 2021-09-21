@@ -17,7 +17,7 @@ public class StructuralRuleTest {
     var rule = new StructuralRule((a) -> true);
 
     //When
-    var actual = rule.execute(Commit.builder().build());
+    var actual = rule.run(Commit.builder().build());
 
     //Then
 
@@ -31,7 +31,7 @@ public class StructuralRuleTest {
     var rule = new StructuralRule((a) -> false);
 
     //When
-    var actual = rule.execute(Commit.builder().build());
+    var actual = rule.run(Commit.builder().build());
 
     //Then
 

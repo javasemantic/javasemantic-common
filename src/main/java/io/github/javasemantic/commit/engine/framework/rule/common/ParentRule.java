@@ -17,6 +17,8 @@ public abstract class ParentRule<Argument> extends BasicRule<Argument> {
   public RuleResult execute(final Argument argument) {
     var result = run(argument);
 
+    engine.addResultToEngine(result);
+
     if (result.isAppliedOrValid()) {
       for (var childRule : childrenRules) {
         childRule.setEngine(engine);

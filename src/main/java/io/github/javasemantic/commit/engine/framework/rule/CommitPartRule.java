@@ -17,10 +17,11 @@ public class CommitPartRule extends BasicRule<Commit> {
       .status(RuleStatusEnum.NOT_APPLICABLE)
       .build();
 
+  @Override
   public RuleResult execute(final Commit commit) {
     executeAssociatedRule(structuralValidationRule, commit);
     executeAssociatedRule(conventionalValidationRule, commit);
-    executeAssociatedRule(versionRule, commit);
+    executeAssociatedVersionRule(versionRule, commit);
 
     return ruleResult;
   }
@@ -29,6 +30,17 @@ public class CommitPartRule extends BasicRule<Commit> {
       final Commit commit) {
     if (Objects.nonNull(associatedRule)) {
       if (ruleResult.isAppliedOrValid() || ruleResult.isNotApplicable()) {
+        associatedRule.setEngine(engine);
+        ruleResult = associatedRule.execute(commit);
+      }
+    }
+  }
+
+  private void executeAssociatedVersionRule(BasicRule<Commit> associatedRule,
+      final Commit commit) {
+    if (Objects.nonNull(associatedRule)) {
+      if (ruleResult.isAppliedOrValid()) {
+        associatedRule.setEngine(engine);
         ruleResult = associatedRule.execute(commit);
       }
     }

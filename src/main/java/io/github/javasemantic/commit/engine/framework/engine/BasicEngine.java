@@ -12,12 +12,14 @@ public abstract class BasicEngine<RuleType extends BasicRule<Argument>, Argument
 
   private final List<RuleResult> history = new ArrayList<>();
 
+  @Override
   public EngineResult execute(final Argument argument) {
     final List<RuleType> rules = this.assignRules();
 
     for (var rule : rules) {
       rule.setEngine(this);
       var result = rule.execute(argument);
+      addResultToEngine(result);
       if (result.isInvalid()) {
         break;
       }
