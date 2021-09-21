@@ -11,12 +11,18 @@ public class PreStructuralValidationRule extends ParentRule<Commit> {
   @Override
   protected RuleResult run(Commit commit) {
 
-    var result = RuleResult.builder();
+    var resultBuilder = RuleResult.builder();
 
-    result.status(ValidConventionalCommitUtil.isValid(commit.getDirtyCommit().getMessage())
+    resultBuilder.status(ValidConventionalCommitUtil.isValid(commit.getDirtyCommit().getMessage())
         ? RuleStatusEnum.VALID
         : RuleStatusEnum.INVALID);
 
-    return result.build();
+    var result = resultBuilder
+        .ruleName("Pre-structural Validation Rule")
+        .build();
+
+    engine.addResultToEngine(result);
+
+    return result;
   }
 }

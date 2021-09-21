@@ -9,8 +9,13 @@ import java.util.Objects;
 public class CommitPartRule extends BasicRule<Commit> {
 
   private ConventionalValidationRule conventionalValidationRule;
+  private String conventionalValidationRuleName;
+
   private StructuralValidationRule structuralValidationRule;
+  private String structuralValidationRuleName;
+
   private VersionRule versionRule;
+  private String versionRuleName;
 
   private RuleResult ruleResult = RuleResult
       .builder()
@@ -19,46 +24,62 @@ public class CommitPartRule extends BasicRule<Commit> {
 
   @Override
   public RuleResult execute(final Commit commit) {
-    executeAssociatedRule(structuralValidationRule, commit);
-    executeAssociatedRule(conventionalValidationRule, commit);
-    executeAssociatedVersionRule(versionRule, commit);
+    executeAssociatedRule(structuralValidationRuleName, structuralValidationRule, commit);
+    executeAssociatedRule(conventionalValidationRuleName, conventionalValidationRule, commit);
+    executeAssociatedVersionRule(versionRuleName, versionRule, commit);
 
     return ruleResult;
   }
 
-  private void executeAssociatedRule(BasicRule<Commit> associatedRule,
+  private void executeAssociatedRule(
+      final String ruleName,
+      final BasicRule<Commit> associatedRule,
       final Commit commit) {
-    if (Objects.nonNull(associatedRule)) {
-      if (ruleResult.isAppliedOrValid() || ruleResult.isNotApplicable()) {
-        associatedRule.setEngine(engine);
-        ruleResult = associatedRule.execute(commit);
+    if (Objects.nonNull(associatedRule) &&
+        (ruleResult.isAppliedOrValid() || ruleResult.isNotApplicable())) {
+        executeRule(ruleName, associatedRule, commit);
       }
-    }
   }
 
-  private void executeAssociatedVersionRule(BasicRule<Commit> associatedRule,
+  private void executeAssociatedVersionRule(
+      final String ruleName,
+      final BasicRule<Commit> associatedRule,
       final Commit commit) {
-    if (Objects.nonNull(associatedRule)) {
-      if (ruleResult.isAppliedOrValid()) {
-        associatedRule.setEngine(engine);
-        ruleResult = associatedRule.execute(commit);
+    if (Objects.nonNull(associatedRule) && ruleResult.isAppliedOrValid()) {
+        executeRule(ruleName, associatedRule, commit);
       }
-    }
+  }
+
+  private void executeRule(String ruleName, BasicRule<Commit> associatedRule, Commit commit) {
+    associatedRule.setEngine(engine);
+    ruleResult = associatedRule.execute(commit);
+    ruleResult.setRuleName(ruleName);
+    engine.addResultToEngine(ruleResult);
   }
 
   public CommitPartRule setConventionalValidationRule(
-      final ConventionalValidationRule conventionalValidationRule) {
+      final String conventionalValidationRuleName,
+      final ConventionalValidationRule conventionalValidationRule
+  ) {
+    this.conventionalValidationRuleName = String.format("Conventional Validation Rule: %s", conventionalValidationRuleName);;
     this.conventionalValidationRule = conventionalValidationRule;
     return this;
   }
 
   public CommitPartRule setStructuralValidationRule(
-      final StructuralValidationRule structuralValidationRule) {
+      final String structuralValidationRuleName,
+      final StructuralValidationRule structuralValidationRule
+  ) {
+    this.structuralValidationRuleName = String.format("Structural Validation Rule: %s", structuralValidationRuleName);
     this.structuralValidationRule = structuralValidationRule;
     return this;
   }
 
-  public CommitPartRule setVersionRule(final VersionRule versionRule) {
+  public CommitPartRule setVersionRule(
+      final String versionRuleName,
+      final VersionRule versionRule
+  ) {
+    this.versionRuleName = String.format("Version Rule: %s", versionRuleName);
     this.versionRule = versionRule;
     return this;
   }
