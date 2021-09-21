@@ -28,18 +28,27 @@ public class JgitCommitRetrievalImpl implements CommitRetrieval {
   }
 
   private List<DirtyCommit> createCommits() {
-    List<DirtyCommit> commits = new ArrayList<>();
+    List<DirtyCommit> dirtyCommits = new ArrayList<>();
+    List<String> printableCommits = new ArrayList<>();
+
     for (var commit : getRevCommits()) {
-      Log.info(JgitCommitRetrievalImpl.class, commit.toString());
-      commits.add(DirtyCommit
+      printableCommits.add(String.format("Commit detected: %s", commit.getShortMessage()));
+      dirtyCommits.add(DirtyCommit
           .builder()
           .message(commit.getShortMessage())
           .footers(getFooters(commit.getFooterLines()))
           .build()
       );
     }
-    Collections.reverse(commits);
-    return commits;
+
+    Collections.reverse(dirtyCommits);
+    Collections.reverse(printableCommits);
+
+    printableCommits.forEach(
+        printableCommit -> Log.info(this.getClass(), printableCommit)
+    );
+
+    return dirtyCommits;
   }
 
   private List<String> getFooters(List<FooterLine> footerLines) {
@@ -51,7 +60,15 @@ public class JgitCommitRetrievalImpl implements CommitRetrieval {
 
   private void init() {
     repository = createRepository();
-    git = new Git(createRepository());
+    git = new Git(repository);
+    try {
+      Log.info(
+          this.getClass(),
+          String.format("Branch detected: %s", repository.getFullBranch())
+      );
+    } catch (Exception e) {
+      throw new RuntimeException("Can't retrieve branch name.");
+    }
   }
 
   private Repository createRepository() {

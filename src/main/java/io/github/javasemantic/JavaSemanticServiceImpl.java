@@ -38,7 +38,7 @@ public class JavaSemanticServiceImpl implements JavaSemanticService {
 
       if (result.isValid()) {
         Log.info(this.getClass(), String.format(
-            "Commit: %s, Commit Dirty Version: %s",
+            "Valid Commit: %s, Commit's dirty version: %s",
             dirtyCommit.getMessage(),
             commit.getDirtyVersion().toString()
         ));

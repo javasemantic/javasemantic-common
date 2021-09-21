@@ -56,13 +56,22 @@ public class Log {
 
   private static void printHomemadeLog(LogObject logObject) {
     if (logObject.getLevel().getNumericValue() <= assignedLevel.getNumericValue()) {
-      System.out.printf("[%s] %s: %s%n", logObject.getLevel(), logObject.getType(),
-          logObject.getMessage());
+      System.out.printf(
+          "[%s] %s: %s%n",
+          logObject.getLevel(),
+          logObject.getType(),
+          logObject.getMessage()
+      );
     }
   }
 
   private static void printMavenPluginLog(LogObject logObject) {
-    var message = String.format("%s: %s", logObject.getType(), logObject.getMessage());
+    var message = String.format(
+        "%s: %s",
+        logObject.getType(),
+        logObject.getMessage()
+    );
+
     switch (logObject.getLevel()) {
       case ERROR:
         mavenLog.error(message);
