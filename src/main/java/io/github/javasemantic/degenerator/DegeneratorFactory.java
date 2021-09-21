@@ -12,4 +12,5 @@ public class DegeneratorFactory {
   public static Degenerator get() {
     return constructor.get();
   }
+
 }

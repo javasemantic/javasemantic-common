@@ -17,7 +17,7 @@ public class OptionalConventionalRuleTest {
     var rule = new OptionalConventionalRule((a) -> true);
 
     //When
-    var actual = rule.execute(Commit.builder().build());
+    var actual = rule.run(Commit.builder().build());
 
     //Then
 
@@ -31,11 +31,11 @@ public class OptionalConventionalRuleTest {
     var rule = new OptionalConventionalRule((a) -> false);
 
     //When
-    var actual = rule.execute(Commit.builder().build());
+    var actual = rule.run(Commit.builder().build());
 
     //Then
 
-    assertTrue(actual.isInvalid());
+    assertTrue(actual.isNotApplicable());
   }
 
 }

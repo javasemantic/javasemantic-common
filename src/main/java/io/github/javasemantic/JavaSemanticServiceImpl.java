@@ -7,6 +7,7 @@ import io.github.javasemantic.domain.DomainFactory;
 import io.github.javasemantic.domain.model.Commit;
 import io.github.javasemantic.domain.model.DirtyCommit;
 import io.github.javasemantic.domain.model.common.Version;
+import io.github.javasemantic.logging.Log;
 import io.github.javasemantic.version.manager.VersionManager;
 import lombok.RequiredArgsConstructor;
 import org.apache.log4j.BasicConfigurator;
@@ -23,21 +24,34 @@ public class JavaSemanticServiceImpl implements JavaSemanticService {
     BasicConfigurator.configure();
   }
 
+  @Override
   public Version execute() {
     init();
 
     var projectData = DomainFactory.getProjectData();
-
-    for (var dirtyCommit : commitRetrieval.getCommits()) {
+    var dirtyCommits = commitRetrieval.getCommits();
+    for (var dirtyCommit : dirtyCommits) {
       var commit = createCommit(dirtyCommit);
       var result = commitEngine.execute(commit);
 
       if (result.isValid()) {
+        Log.info(this.getClass(), String.format(
+            "Commit: %s, Commit Dirty Version: %s",
+            dirtyCommit.getMessage(),
+            commit.getDirtyVersion().toString()
+        ));
         projectData.getCommits().add(commit);
       }
     }
 
-    return versionManager.calculateProjectVersion(projectData);
+    var projectVersion = versionManager.calculateProjectVersion(projectData);
+
+    Log.info(this.getClass(), String.format(
+        "Project version: %s",
+        projectVersion.toString()
+    ));
+
+    return projectVersion;
   }
 
   private Commit createCommit(DirtyCommit dirtyCommit) {

@@ -18,7 +18,7 @@ public class CasingRuleTest {
     var casingRule = new CasingRule((a) -> true);
 
     //When
-    var actual = casingRule.execute(Commit.builder().build());
+    var actual = casingRule.run(Commit.builder().build());
 
     //Then
 
@@ -32,7 +32,7 @@ public class CasingRuleTest {
     var casingRule = new CasingRule((a) -> false);
 
     //When
-    var actual = casingRule.execute(Commit.builder().build());
+    var actual = casingRule.run(Commit.builder().build());
 
     //Then
 

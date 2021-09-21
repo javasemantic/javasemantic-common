@@ -16,7 +16,7 @@ import org.eclipse.jgit.revwalk.RevCommit;
 
 public class JgitCommitRetrievalImpl implements CommitRetrieval {
 
-  public static final String GIT = ".git";
+  private static final String GIT = ".git";
 
   private Git git;
   private Repository repository;

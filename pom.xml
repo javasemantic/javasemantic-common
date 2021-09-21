@@ -7,7 +7,7 @@
 
   <groupId>io.github.javasemantic</groupId>
   <artifactId>javasemantic-common</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>javasemantic</name>
@@ -102,11 +102,48 @@
     </dependency>
     <!-- -->
 
+    <!-- Install Hooks Dependencies -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-exec</artifactId>
+      <version>1.3</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.11</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.7</version>
+      <scope>compile</scope>
+    </dependency>
+    <!-- -->
+
   </dependencies>
 
   <build>
-
       <plugins>
+
+<!--        &lt;!&ndash; Versioning &ndash;&gt;-->
+<!--        <plugin>-->
+<!--          <groupId>io.github.javasemantic</groupId>-->
+<!--          <artifactId>javasemantic-maven-plugin</artifactId>-->
+<!--          <version>0.0.2-SNAPSHOT</version>-->
+<!--          <executions>-->
+<!--            &lt;!&ndash; On commit, format the modified java files &ndash;&gt;-->
+<!--            <execution>-->
+<!--              <id>install-formatter-hook</id>-->
+<!--              <goals>-->
+<!--                <goal>install-hooks</goal>-->
+<!--              </goals>-->
+<!--            </execution>-->
+<!--          </executions>-->
+<!--        </plugin>-->
+<!--        &lt;!&ndash; &ndash;&gt;-->
 
         <!-- Compiler -->
         <plugin>
