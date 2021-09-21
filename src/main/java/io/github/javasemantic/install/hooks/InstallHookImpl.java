@@ -11,7 +11,8 @@ import java.nio.file.Path;
 
 public class InstallHookImpl implements InstallHook {
 
-  private static final String BASE_PLUGIN_PRE_COMMIT_HOOK = "commit-msg";
+  private static final String COMMIT_MSG = "commit-msg";
+  private static final String PRE_COMMIT = "pre-commit";
 
   @Override
   public void execute(InstallHookArguments installHookArguments) throws IOException {
@@ -26,10 +27,15 @@ public class InstallHookImpl implements InstallHook {
 
     createPluginHookFile(
         gitHookDirectory,
-        BASE_PLUGIN_PRE_COMMIT_HOOK,
-        BASE_PLUGIN_PRE_COMMIT_HOOK,
+        COMMIT_MSG,
+        COMMIT_MSG,
         installHookArguments);
 
+    createPluginHookFile(
+        gitHookDirectory,
+        PRE_COMMIT,
+        PRE_COMMIT,
+        installHookArguments);
   }
 
   private void createPluginHookFile(
