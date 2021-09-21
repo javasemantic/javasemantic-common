@@ -2,4 +2,4 @@
 
 commit_message=$(cat "$1")
 
-%s -f %s io.github.javasemantic:javasemantic-maven-plugin:commit-validation -Dgit.commit.message="$commit_message"
+%s -f %s io.github.javasemantic:javasemantic-maven-plugin:determine-version -Dgit.commit.message="$commit_message"
