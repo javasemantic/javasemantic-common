@@ -27,6 +27,9 @@ public enum TypeRuleEnum {
   FEAT_RULE(
       (commitComponent) -> "feat".equals(commitComponent.getType()), FEAT),
 
+  FEATURE_RULE(
+      (commitComponent) -> "feature".equals(commitComponent.getType()), FEAT),
+
   BREAKING_CHANGE_RULE((commitComponent) -> "BREAKING CHANGE".equals(commitComponent.getType()),
       BREAKING_CHANGE),
 
