@@ -22,8 +22,8 @@ public class JavaSemanticServiceTest {
         new DegeneratorImpl(),
         new CommitEngineImpl(),
         new VersionManagerImpl(),
-        new CommitRetrievalTestImpl()
-
+        new CommitRetrievalTestImpl(),
+        null
     );
 
     var version = service.execute();
@@ -31,7 +31,7 @@ public class JavaSemanticServiceTest {
     assertEquals("3.0.2", version.toString());
   }
 
-  private class CommitRetrievalTestImpl implements CommitRetrieval {
+  private static class CommitRetrievalTestImpl implements CommitRetrieval {
 
     @Override
     public List<DirtyCommit> getCommits() {
@@ -50,7 +50,7 @@ public class JavaSemanticServiceTest {
 
   @Test
   public void testAgainstOurGit() {
-    var service = JavaSemanticServiceFactory.get();
+    var service = JavaSemanticServiceFactory.get(null);
     var version = service.execute();
     System.out.println(version);
   }

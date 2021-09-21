@@ -19,9 +19,11 @@ public class JavaSemanticServiceImpl implements JavaSemanticService {
   private final CommitEngine<Commit> commitEngine;
   private final VersionManager versionManager;
   private final CommitRetrieval commitRetrieval;
+  private final org.apache.maven.plugin.logging.Log mavenLog;
 
   public void init() {
     BasicConfigurator.configure();
+    Log.setMavenLog(mavenLog);
   }
 
   @Override
