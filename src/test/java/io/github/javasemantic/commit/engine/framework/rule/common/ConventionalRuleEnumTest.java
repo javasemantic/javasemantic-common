@@ -1,7 +1,8 @@
-package io.github.javasemantic.commit.engine.factory.enums;
+package io.github.javasemantic.commit.engine.framework.rule.common;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import io.github.javasemantic.commit.engine.factory.enums.ConventionalRuleEnum;
 import io.github.javasemantic.domain.model.Commit;
 import io.github.javasemantic.domain.model.common.CommitComponents;
 import java.util.List;
@@ -36,7 +37,7 @@ public class ConventionalRuleEnumTest {
     Commit commit = Commit.builder().commitComponents(CommitComponents.builder().build()).build();
 
     //When
-    var actual = conventionalValidationRule.execute(commit);
+    var actual = conventionalValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isInvalid());
@@ -51,7 +52,7 @@ public class ConventionalRuleEnumTest {
         .commitComponents(CommitComponents.builder().type("chicken").build()).build();
 
     //When
-    var actual = conventionalValidationRule.execute(commit);
+    var actual = conventionalValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isInvalid());
@@ -67,7 +68,7 @@ public class ConventionalRuleEnumTest {
           .commitComponents(CommitComponents.builder().type(type).build()).build();
 
       //When
-      var actual = conventionalValidationRule.execute(commit);
+      var actual = conventionalValidationRule.run(commit);
 
       //Then
       assertTrue(actual.isAppliedOrValid());
@@ -84,10 +85,26 @@ public class ConventionalRuleEnumTest {
         .commitComponents(CommitComponents.builder().exclamation(true).build()).build();
 
     //When
-    var actual = conventionalValidationRule.execute(commit);
+    var actual = conventionalValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isAppliedOrValid());
+  }
+
+  @Test
+  void when_notGetBreaking_change_should_notApplicable_for_exclamation() {
+
+    //Given
+    var conventionalValidationRule = ConventionalRuleEnum.BREAKING_EXCLAMATION_RULE.getConstructor()
+        .get();
+    Commit commit = Commit.builder()
+        .commitComponents(CommitComponents.builder().exclamation(false).build()).build();
+
+    //When
+    var actual = conventionalValidationRule.run(commit);
+
+    //Then
+    assertTrue(actual.isNotApplicable());
   }
 
   @Test
@@ -101,7 +118,7 @@ public class ConventionalRuleEnumTest {
         .build();
 
     //When
-    var actual = conventionalValidationRule.execute(commit);
+    var actual = conventionalValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isAppliedOrValid());
@@ -117,10 +134,10 @@ public class ConventionalRuleEnumTest {
         List.of()).build()).build();
 
     //When
-    var actual = conventionalValidationRule.execute(commit);
+    var actual = conventionalValidationRule.run(commit);
 
     //Then
-    assertTrue(actual.isInvalid());
+    assertTrue(actual.isNotApplicable());
   }
 
 }

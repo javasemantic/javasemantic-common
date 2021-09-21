@@ -1,7 +1,8 @@
-package io.github.javasemantic.commit.engine.factory.enums;
+package io.github.javasemantic.commit.engine.framework.rule.common;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import io.github.javasemantic.commit.engine.factory.enums.StructuralRuleEnum;
 import io.github.javasemantic.domain.model.Commit;
 import io.github.javasemantic.domain.model.common.CommitComponents;
 import java.util.List;
@@ -20,7 +21,7 @@ public class StructuralRuleEnumTest {
     Commit commit = Commit.builder().commitComponents(CommitComponents.builder().build()).build();
 
     //When
-    var actual = structuralValidationRule.execute(commit);
+    var actual = structuralValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isInvalid());
@@ -37,7 +38,7 @@ public class StructuralRuleEnumTest {
         .build()).build();
 
     //When
-    var actual = structuralValidationRule.execute(commit);
+    var actual = structuralValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isAppliedOrValid());
@@ -54,7 +55,7 @@ public class StructuralRuleEnumTest {
         .build()).build();
 
     //When
-    var actual = structuralValidationRule.execute(commit);
+    var actual = structuralValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isNotApplicable());
@@ -71,7 +72,7 @@ public class StructuralRuleEnumTest {
         .build()).build();
 
     //When
-    var actual = structuralValidationRule.execute(commit);
+    var actual = structuralValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isAppliedOrValid());
@@ -86,7 +87,7 @@ public class StructuralRuleEnumTest {
     Commit commit = Commit.builder().commitComponents(CommitComponents.builder().build()).build();
 
     //When
-    var actual = structuralValidationRule.execute(commit);
+    var actual = structuralValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isInvalid());
@@ -103,7 +104,7 @@ public class StructuralRuleEnumTest {
         .build()).build();
 
     //When
-    var actual = structuralValidationRule.execute(commit);
+    var actual = structuralValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isAppliedOrValid());
@@ -118,7 +119,7 @@ public class StructuralRuleEnumTest {
     Commit commit = Commit.builder().commitComponents(CommitComponents.builder().build()).build();
 
     //When
-    var actual = structuralValidationRule.execute(commit);
+    var actual = structuralValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isInvalid());
@@ -135,7 +136,7 @@ public class StructuralRuleEnumTest {
         .build()).build();
 
     //When
-    var actual = structuralValidationRule.execute(commit);
+    var actual = structuralValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isAppliedOrValid());
@@ -150,7 +151,7 @@ public class StructuralRuleEnumTest {
     Commit commit = Commit.builder().commitComponents(CommitComponents.builder().build()).build();
 
     //When
-    var actual = structuralValidationRule.execute(commit);
+    var actual = structuralValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isNotApplicable());
@@ -168,7 +169,7 @@ public class StructuralRuleEnumTest {
         .build()).build();
 
     //When
-    var actual = structuralValidationRule.execute(commit);
+    var actual = structuralValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isAppliedOrValid());
@@ -183,7 +184,7 @@ public class StructuralRuleEnumTest {
     Commit commit = Commit.builder().commitComponents(CommitComponents.builder().build()).build();
 
     //When
-    var actual = structuralValidationRule.execute(commit);
+    var actual = structuralValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isInvalid());
@@ -200,7 +201,7 @@ public class StructuralRuleEnumTest {
         .build()).build();
 
     //When
-    var actual = structuralValidationRule.execute(commit);
+    var actual = structuralValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isAppliedOrValid());
@@ -214,7 +215,7 @@ public class StructuralRuleEnumTest {
     Commit commit = Commit.builder().commitComponents(CommitComponents.builder().build()).build();
 
     //When
-    var actual = structuralValidationRule.execute(commit);
+    var actual = structuralValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isNotApplicable());
@@ -231,7 +232,7 @@ public class StructuralRuleEnumTest {
         .build()).build();
 
     //When
-    var actual = structuralValidationRule.execute(commit);
+    var actual = structuralValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isAppliedOrValid());
@@ -247,7 +248,7 @@ public class StructuralRuleEnumTest {
         .build()).build();
 
     //When
-    var actual = structuralValidationRule.execute(commit);
+    var actual = structuralValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isInvalid());
@@ -264,7 +265,7 @@ public class StructuralRuleEnumTest {
         .build()).build();
 
     //When
-    var actual = structuralValidationRule.execute(commit);
+    var actual = structuralValidationRule.run(commit);
 
     //Then
     assertTrue(actual.isAppliedOrValid());

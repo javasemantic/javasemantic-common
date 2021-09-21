@@ -29,8 +29,8 @@ public class JavaSemanticServiceImpl implements JavaSemanticService {
     init();
 
     var projectData = DomainFactory.getProjectData();
-
-    for (var dirtyCommit : commitRetrieval.getCommits()) {
+    var dirtyCommits = commitRetrieval.getCommits();
+    for (var dirtyCommit : dirtyCommits) {
       var commit = createCommit(dirtyCommit);
       var result = commitEngine.execute(commit);
 
