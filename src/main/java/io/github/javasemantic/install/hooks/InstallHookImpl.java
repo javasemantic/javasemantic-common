@@ -42,7 +42,7 @@ public class InstallHookImpl implements InstallHook {
     executable.truncateWithTemplate(
         () -> getClass().getResourceAsStream("/" + resourceFile),
         StandardCharsets.UTF_8.toString(),
-        installHookArguments.getToolsAbsolutePath(),
+        installHookArguments.getBuildToolAbsolutePath(),
         installHookArguments.getProjectBuildFile());
 
   }

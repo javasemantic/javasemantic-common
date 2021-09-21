@@ -7,7 +7,7 @@
 
   <groupId>io.github.javasemantic</groupId>
   <artifactId>javasemantic-common</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>javasemantic</name>
@@ -126,8 +126,24 @@
   </dependencies>
 
   <build>
-
       <plugins>
+
+        <!-- Versioning -->
+        <plugin>
+          <groupId>io.github.javasemantic</groupId>
+          <artifactId>javasemantic-maven-plugin</artifactId>
+          <version>0.0.2-SNAPSHOT</version>
+          <executions>
+            <!-- On commit, format the modified java files -->
+            <execution>
+              <id>install-formatter-hook</id>
+              <goals>
+                <goal>install-hooks</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- -->
 
         <!-- Compiler -->
         <plugin>

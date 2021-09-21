@@ -15,6 +15,6 @@ public class InstallHookArguments {
   private String[] propertiesToPropagate;
   private String[] propertiesToAdd;
   private String gitLifeCycle;
-  private Path toolsAbsolutePath;
+  private Path buildToolAbsolutePath;
 
 }
