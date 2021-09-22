@@ -15,6 +15,7 @@ public abstract class BasicEngine<RuleType extends BasicRule<Argument>, Argument
   @Override
   public EngineResult execute(final Argument argument) {
     final List<RuleType> rules = this.assignRules();
+    history.clear();
 
     for (var rule : rules) {
       rule.setEngine(this);

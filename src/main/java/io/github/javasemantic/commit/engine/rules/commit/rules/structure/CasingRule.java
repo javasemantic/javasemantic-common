@@ -21,6 +21,9 @@ public class CasingRule extends StructuralValidationRule {
       status = RuleStatusEnum.VALID;
     }
 
-    return RuleResult.builder().status(status).build();
+    return RuleResult
+        .builder()
+        .status(status)
+        .build();
   }
 }

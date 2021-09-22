@@ -43,7 +43,6 @@ public class DegeneratorImpl implements Degenerator {
     return ValidConventionalCommitUtil.isValid(commit.getMessage());
   }
 
-
   private String getCommitType(DirtyCommit commit) {
     var preColon = getPreColon(commit);
     return hasValidColonFormat(commit)

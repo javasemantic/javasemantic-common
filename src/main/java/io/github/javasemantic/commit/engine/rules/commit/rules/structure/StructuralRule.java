@@ -20,6 +20,9 @@ public class StructuralRule extends StructuralValidationRule {
         ? RuleStatusEnum.VALID
         : RuleStatusEnum.INVALID;
 
-    return RuleResult.builder().status(status).build();
+    return RuleResult
+        .builder()
+        .status(status)
+        .build();
   }
 }

@@ -2,11 +2,15 @@ package io.github.javasemantic.commit.engine.framework.result;
 
 import io.github.javasemantic.commit.engine.framework.enums.RuleStatusEnum;
 import lombok.Builder;
+import lombok.Setter;
 
 @Builder
 public class RuleResult {
 
   private RuleStatusEnum status;
+
+  @Setter
+  private String ruleName;
 
   public boolean isAppliedOrValid() {
     return status.equals(RuleStatusEnum.APPLIED) || status.equals(RuleStatusEnum.VALID);
