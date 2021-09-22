@@ -21,38 +21,69 @@ public class CommitEngineImpl extends BasicEngine<BasicRule<Commit>, Commit> {
             List.of(
                 RuleFactory
                     .getCommitPartRule()
-                    .setStructuralValidationRule(RuleFactory.get(StructuralRuleEnum.TYPE_RULE))
-                    .setConventionalValidationRule(RuleFactory.get(ConventionalRuleEnum.TYPE_RULE))
-                    .setVersionRule((RuleFactory.get(VersionRuleEnum.VERSION_RULE_ENUM))),
-
-                RuleFactory
-                    .getCommitPartRule()
                     .setStructuralValidationRule(
-                        RuleFactory.get(StructuralRuleEnum.OPTIONAL_EXCLAMATION_RULE))
+                        StructuralRuleEnum.TYPE_RULE.name(),
+                        RuleFactory.get(StructuralRuleEnum.TYPE_RULE)
+                    )
                     .setConventionalValidationRule(
-                        RuleFactory.get(ConventionalRuleEnum.BREAKING_EXCLAMATION_RULE))
-                    .setVersionRule((RuleFactory.get(VersionRuleEnum.BREAKING_CHANGE_RULE))),
+                        ConventionalRuleEnum.TYPE_RULE.name(),
+                        RuleFactory.get(ConventionalRuleEnum.TYPE_RULE)
+                    )
+                    .setVersionRule(
+                        VersionRuleEnum.VERSION_RULE_ENUM.name(),
+                        RuleFactory.get(VersionRuleEnum.VERSION_RULE_ENUM)
+                    ),
 
                 RuleFactory
                     .getCommitPartRule()
                     .setStructuralValidationRule(
-                        RuleFactory.get(StructuralRuleEnum.OPTIONAL_SCOPE_RULE)),
-
-                RuleFactory
-                    .getCommitPartRule()
-                    .setStructuralValidationRule(RuleFactory.get(StructuralRuleEnum.COLON_RULE)),
-
-                RuleFactory
-                    .getCommitPartRule()
-                    .setStructuralValidationRule(
-                        RuleFactory.get(StructuralRuleEnum.DESCRIPTION_RULE)),
-
-                RuleFactory
-                    .getCommitPartRule()
-                    .setStructuralValidationRule(RuleFactory.get(StructuralRuleEnum.BODY_RULE))
+                        StructuralRuleEnum.OPTIONAL_EXCLAMATION_RULE.name(),
+                        RuleFactory.get(StructuralRuleEnum.OPTIONAL_EXCLAMATION_RULE)
+                    )
                     .setConventionalValidationRule(
-                        RuleFactory.get(ConventionalRuleEnum.BREAKING_BODY_RULE))
-                    .setVersionRule((RuleFactory.get(VersionRuleEnum.BREAKING_CHANGE_RULE)))
+                        ConventionalRuleEnum.BREAKING_EXCLAMATION_RULE.name(),
+                        RuleFactory.get(ConventionalRuleEnum.BREAKING_EXCLAMATION_RULE)
+                    )
+                    .setVersionRule(
+                        VersionRuleEnum.BREAKING_CHANGE_RULE.name(),
+                        RuleFactory.get(VersionRuleEnum.BREAKING_CHANGE_RULE)
+                    ),
+
+                RuleFactory
+                    .getCommitPartRule()
+                    .setStructuralValidationRule(
+                        StructuralRuleEnum.OPTIONAL_SCOPE_RULE.name(),
+                        RuleFactory.get(StructuralRuleEnum.OPTIONAL_SCOPE_RULE)
+                    ),
+
+                RuleFactory
+                    .getCommitPartRule()
+                    .setStructuralValidationRule(
+                        StructuralRuleEnum.COLON_RULE.name(),
+                        RuleFactory.get(StructuralRuleEnum.COLON_RULE)
+                    ),
+
+                RuleFactory
+                    .getCommitPartRule()
+                    .setStructuralValidationRule(
+                        StructuralRuleEnum.DESCRIPTION_RULE.name(),
+                        RuleFactory.get(StructuralRuleEnum.DESCRIPTION_RULE)
+                    ),
+
+                RuleFactory
+                    .getCommitPartRule()
+                    .setStructuralValidationRule(
+                        StructuralRuleEnum.BODY_RULE.name(),
+                        RuleFactory.get(StructuralRuleEnum.BODY_RULE)
+                    )
+                    .setConventionalValidationRule(
+                        ConventionalRuleEnum.BREAKING_BODY_RULE.name(),
+                        RuleFactory.get(ConventionalRuleEnum.BREAKING_BODY_RULE)
+                    )
+                    .setVersionRule(
+                        VersionRuleEnum.BREAKING_CHANGE_RULE.name(),
+                        RuleFactory.get(VersionRuleEnum.BREAKING_CHANGE_RULE)
+                    )
             )
         )
     );

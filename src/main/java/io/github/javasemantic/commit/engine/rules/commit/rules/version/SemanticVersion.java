@@ -17,7 +17,10 @@ public class SemanticVersion extends VersionRule {
 
     commit.getDirtyVersion().addVersion(type);
 
-    return RuleResult.builder().status(RuleStatusEnum.VALID).build();
+    return RuleResult
+        .builder()
+        .status(RuleStatusEnum.VALID)
+        .build();
   }
 
 }

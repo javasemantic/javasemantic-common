@@ -22,7 +22,10 @@ public class ConventionalRule extends ConventionalValidationRule {
       ruleStatusEnum = RuleStatusEnum.VALID;
     }
 
-    return RuleResult.builder().status(ruleStatusEnum).build();
+    return RuleResult
+        .builder()
+        .status(ruleStatusEnum)
+        .build();
   }
 
 }

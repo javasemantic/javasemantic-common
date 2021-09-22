@@ -20,6 +20,9 @@ public class OptionalStructuralRule extends StructuralValidationRule {
         ? RuleStatusEnum.VALID
         : RuleStatusEnum.NOT_APPLICABLE;
 
-    return RuleResult.builder().status(status).build();
+    return RuleResult
+        .builder()
+        .status(status)
+        .build();
   }
 }

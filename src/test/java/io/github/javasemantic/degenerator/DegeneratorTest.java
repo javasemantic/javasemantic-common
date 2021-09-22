@@ -69,6 +69,44 @@ public class DegeneratorTest {
   }
 
   @Test
+  public void when_validTypeNoExclamationScopeColonWhitespaceDescriptionTwo() {
+    this.degenerator = DegeneratorFactory.get();
+
+    var degeneratedCommit = this.degenerator
+        .degenerate(DirtyCommit
+            .builder()
+            .message("chore(something): some chicken actually did something (#12)")
+            .build());
+
+    assertEquals("chore", degeneratedCommit.getType());
+    assertFalse(degeneratedCommit.isExclamation());
+    assertEquals("something", degeneratedCommit.getScope());
+    assertTrue(degeneratedCommit.isColon());
+    assertTrue(degeneratedCommit.isWhitespace());
+    assertEquals("some chicken actually did something (#12)", degeneratedCommit.getDescription());
+    assertEquals(0, degeneratedCommit.getBody().size());
+  }
+
+  @Test
+  public void when_validTypeNoExclamationScopeColonWhitespaceDescriptionThree() {
+    this.degenerator = DegeneratorFactory.get();
+
+    var degeneratedCommit = this.degenerator
+        .degenerate(DirtyCommit
+            .builder()
+            .message("chore!(something): some chicken actually did something (#12)")
+            .build());
+
+    assertEquals("chore", degeneratedCommit.getType());
+    assertTrue(degeneratedCommit.isExclamation());
+    assertEquals("something", degeneratedCommit.getScope());
+    assertTrue(degeneratedCommit.isColon());
+    assertTrue(degeneratedCommit.isWhitespace());
+    assertEquals("some chicken actually did something (#12)", degeneratedCommit.getDescription());
+    assertEquals(0, degeneratedCommit.getBody().size());
+  }
+
+  @Test
   public void when_validTypeExclamationScopeColonWhitespaceDescription() {
     this.degenerator = DegeneratorFactory.get();
 
@@ -95,6 +133,25 @@ public class DegeneratorTest {
         .degenerate(DirtyCommit
             .builder()
             .message("chore!(something) some chicken actually did something")
+            .build());
+
+    assertEquals("", degeneratedCommit.getType());
+    assertFalse(degeneratedCommit.isExclamation());
+    assertEquals("", degeneratedCommit.getScope());
+    assertFalse(degeneratedCommit.isColon());
+    assertFalse(degeneratedCommit.isWhitespace());
+    assertEquals("", degeneratedCommit.getDescription());
+    assertEquals(0, degeneratedCommit.getBody().size());
+  }
+
+  @Test
+  public void when_validTypeNoExclamationNoScopeNoColonWhitespaceDescriptionTwo() {
+    this.degenerator = DegeneratorFactory.get();
+
+    var degeneratedCommit = this.degenerator
+        .degenerate(DirtyCommit
+            .builder()
+            .message("chore!(something) some chicken actually did something (#12)")
             .build());
 
     assertEquals("", degeneratedCommit.getType());

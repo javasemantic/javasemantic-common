@@ -10,12 +10,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class JavaSemanticServiceFactory {
 
-  public static JavaSemanticService get() {
+  public static JavaSemanticService get(org.apache.maven.plugin.logging.Log mavenLog) {
     return new JavaSemanticServiceImpl(
         DegeneratorFactory.get(),
         CommitEngineFactory.get(),
         VersionManagerFactory.get(),
-        CommitRetrievalFactory.get()
+        CommitRetrievalFactory.get(),
+        mavenLog
     );
   }
 

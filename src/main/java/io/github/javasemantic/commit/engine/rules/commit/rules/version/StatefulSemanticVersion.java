@@ -14,7 +14,10 @@ public class StatefulSemanticVersion extends VersionRule {
 
     commit.getDirtyVersion().addVersion(commit.getTypeEnum());
 
-    return RuleResult.builder().status(RuleStatusEnum.VALID).build();
+    return RuleResult
+        .builder()
+        .status(RuleStatusEnum.VALID)
+        .build();
   }
 
 }
