@@ -30,7 +30,7 @@
     <log4j-core.version>2.14.1</log4j-core.version>
     <log4j.version>1.2.17</log4j.version>
     <maven-plugin-api.version>3.3.9</maven-plugin-api.version>
-    <javasemantic-maven-plugin.version>0.0.3-SNAPSHOT</javasemantic-maven-plugin.version>
+    <javasemantic-maven-plugin.version>0.0.5-SNAPSHOT</javasemantic-maven-plugin.version>
   </properties>
 
   <dependencies>
@@ -137,22 +137,22 @@
   <build>
       <plugins>
 
-<!--        &lt;!&ndash; Versioning &ndash;&gt;-->
-<!--        <plugin>-->
-<!--          <groupId>io.github.javasemantic</groupId>-->
-<!--          <artifactId>javasemantic-maven-plugin</artifactId>-->
-<!--          <version>${javasemantic-maven-plugin.version}</version>-->
-<!--          <executions>-->
-<!--            &lt;!&ndash; On commit, format the modified java files &ndash;&gt;-->
-<!--            <execution>-->
-<!--              <id>install-formatter-hook</id>-->
-<!--              <goals>-->
-<!--                <goal>install-hooks</goal>-->
-<!--              </goals>-->
-<!--            </execution>-->
-<!--          </executions>-->
-<!--        </plugin>-->
-<!--        &lt;!&ndash; &ndash;&gt;-->
+        <!-- Versioning -->
+        <plugin>
+          <groupId>io.github.javasemantic</groupId>
+          <artifactId>javasemantic-maven-plugin</artifactId>
+          <version>${javasemantic-maven-plugin.version}</version>
+          <executions>
+            <!-- On commit, format the modified java files -->
+            <execution>
+              <id>install-hook</id>
+              <goals>
+                <goal>install-hooks</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- -->
 
         <!-- Compiler -->
         <plugin>
