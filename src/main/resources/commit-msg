@@ -5,3 +5,6 @@ body=$(tail -n +2 $1)
 commit_body=$(echo $body)
 
 %s -f %s io.github.javasemantic:javasemantic-maven-plugin:determine-version -Dgit.commit.message="$commit_message" -Dgit.commit.body="$commit_body"
+
+cd %s
+chmod +x ./.git/hooks/post-commit
