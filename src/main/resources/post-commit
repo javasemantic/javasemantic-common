@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd %s
+chmod -x ./.git/hooks/post-commit
+git add %s
+git commit --amend --no-edit --no-verify
