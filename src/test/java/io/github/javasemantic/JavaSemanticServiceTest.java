@@ -1,18 +1,16 @@
 package io.github.javasemantic;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import io.github.javasemantic.commit.engine.CommitEngineImpl;
 import io.github.javasemantic.commit.retrieval.CommitRetrieval;
 import io.github.javasemantic.degenerator.DegeneratorImpl;
 import io.github.javasemantic.domain.model.DirtyCommit;
 import io.github.javasemantic.version.manager.VersionManagerImpl;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.List;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class JavaSemanticServiceTest {
@@ -31,7 +29,7 @@ class JavaSemanticServiceTest {
 
     var version = service.execute();
 
-    assertEquals("3.0.2", version.toString());
+    assertEquals("3.0.3", version.toString());
   }
 
   @Test
@@ -48,7 +46,7 @@ class JavaSemanticServiceTest {
 
     var version = service.execute();
 
-    assertEquals("1.1.2", version.toString());
+    assertEquals("1.1.3", version.toString());
   }
 
   @Test
@@ -59,7 +57,7 @@ class JavaSemanticServiceTest {
   }
 
   private DirtyCommit lastCommit() {
-    return DirtyCommit.builder().message("chicken code").build();
+    return DirtyCommit.builder().message("chore: check last commit provided by hook").build();
   }
 
   private static class CommitRetrievalTestImplOne implements CommitRetrieval {

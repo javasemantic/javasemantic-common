@@ -16,5 +16,6 @@ public class InstallHookArguments {
   private String[] propertiesToAdd;
   private String gitLifeCycle;
   private Path buildToolAbsolutePath;
+  private String buildFileName;
 
 }
