@@ -1,9 +1,12 @@
 package io.github.javasemantic.git;
 
 import io.github.javasemantic.logging.Log;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.internal.storage.file.FileRepository;
 import org.eclipse.jgit.lib.Repository;
 
@@ -53,6 +56,16 @@ public class GitHookerImpl implements GitHooker {
       throw new RuntimeException(e.getMessage(), e);
     }
 
+  }
+
+  @Override
+  public void addBuildFileToGit(String buildFileName) {
+    try {
+      var git = Git.init().setDirectory(new File(GIT_DIR)).call();
+      git.add().addFilepattern(buildFileName).setUpdate(true).call();
+    } catch (GitAPIException e) {
+      throw new RuntimeException("Failed to add to commit.");
+    }
   }
 
 }

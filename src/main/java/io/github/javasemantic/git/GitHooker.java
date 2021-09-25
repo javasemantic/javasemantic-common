@@ -9,4 +9,6 @@ public interface GitHooker {
 
   Repository getGitRepository();
 
+  void addBuildFileToGit(String buildFileName);
+
 }
