@@ -1,19 +1,21 @@
 package io.github.javasemantic;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.List;
 
 import io.github.javasemantic.commit.engine.CommitEngineImpl;
 import io.github.javasemantic.commit.retrieval.CommitRetrieval;
 import io.github.javasemantic.degenerator.DegeneratorImpl;
 import io.github.javasemantic.domain.model.DirtyCommit;
 import io.github.javasemantic.version.manager.VersionManagerImpl;
-import java.util.List;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
-public class JavaSemanticServiceTest {
+class JavaSemanticServiceTest {
 
   @Test
   void integrationTest() {
@@ -23,12 +25,41 @@ public class JavaSemanticServiceTest {
         new CommitEngineImpl(),
         new VersionManagerImpl(),
         new CommitRetrievalTestImplOne(),
-        null
+        null,
+        lastCommit()
     );
 
     var version = service.execute();
 
     assertEquals("3.0.2", version.toString());
+  }
+
+  @Test
+  void integrationTestTwo() {
+
+    var service = new JavaSemanticServiceImpl(
+        new DegeneratorImpl(),
+        new CommitEngineImpl(),
+        new VersionManagerImpl(),
+        new CommitRetrievalTestImplTwo(),
+        null,
+        lastCommit()
+    );
+
+    var version = service.execute();
+
+    assertEquals("1.1.2", version.toString());
+  }
+
+  @Test
+  void testAgainstOurGit() {
+    var service = JavaSemanticServiceFactory.get(null, lastCommit());
+    var version = service.execute();
+    System.out.println(version);
+  }
+
+  private DirtyCommit lastCommit() {
+    return DirtyCommit.builder().message("chicken code").build();
   }
 
   private static class CommitRetrievalTestImplOne implements CommitRetrieval {
@@ -48,22 +79,6 @@ public class JavaSemanticServiceTest {
     }
   }
 
-  @Test
-  void integrationTestTwo() {
-
-    var service = new JavaSemanticServiceImpl(
-        new DegeneratorImpl(),
-        new CommitEngineImpl(),
-        new VersionManagerImpl(),
-        new CommitRetrievalTestImplTwo(),
-        null
-    );
-
-    var version = service.execute();
-
-    assertEquals("1.1.2", version.toString());
-  }
-
   private static class CommitRetrievalTestImplTwo implements CommitRetrieval {
 
     @Override
@@ -71,30 +86,32 @@ public class JavaSemanticServiceTest {
       return List.of(
           DirtyCommit.builder().message("chore: initial project files and setup").build(),//001
           DirtyCommit.builder().message("feat: commit engine").build(),//010
-          DirtyCommit.builder().message("Merge pull request #8 from java-semantic/poc/commit-engine").build(),//010
-          DirtyCommit.builder().message("fix: test and create action for automated builds (#9)").build(),//011
+          DirtyCommit.builder()
+              .message("Merge pull request #8 from java-semantic/poc/commit-engine").build(),//010
+          DirtyCommit.builder().message("fix: test and create action for automated builds (#9)")
+              .build(),//011
           DirtyCommit.builder().message("feat: initial project services (#10)").build(),//020
           DirtyCommit.builder().message("feat: add rules and update engine (#13)").build(),//030
           DirtyCommit.builder().message("feat: version manager (#12)").build(),//040
-          DirtyCommit.builder().message("feat: added jgit integration for getting commits from git (#11)").build(),//050
+          DirtyCommit.builder()
+              .message("feat: added jgit integration for getting commits from git (#11)").build(),
+//050
           DirtyCommit.builder().message("chore: create maven publish action").build(),//051
           DirtyCommit.builder().message("Create codeql-analysis.yml (#15)").build(),//051
-          DirtyCommit.builder().message("feat: add degenerator impl, and fix for green (#14)").build(),//060
-          DirtyCommit.builder().message("feat: testing update, big fixes and first green flow (#17)").build(),//070
-          DirtyCommit.builder().message("chore: added jacoco, reformatted code, code owners (#18)").build(),//071
-          DirtyCommit.builder().message("feature!: install hooks and plenty of bugs (#19)").build(),//080
+          DirtyCommit.builder().message("feat: add degenerator impl, and fix for green (#14)")
+              .build(),//060
+          DirtyCommit.builder()
+              .message("feat: testing update, big fixes and first green flow (#17)").build(),//070
+          DirtyCommit.builder().message("chore: added jacoco, reformatted code, code owners (#18)")
+              .build(),//071
+          DirtyCommit.builder().message("feature!: install hooks and plenty of bugs (#19)").build(),
+//080
           DirtyCommit.builder().message("feat: get logging from plugin").build(),//090
           DirtyCommit.builder().message("chore: more logs").build(),//091
-          DirtyCommit.builder().message("fix: fixed regex not allowing any char after colon").build()//092
+          DirtyCommit.builder().message("fix: fixed regex not allowing any char after colon")
+              .build()//092
       );
     }
-  }
-
-  @Test
-  public void testAgainstOurGit() {
-    var service = JavaSemanticServiceFactory.get(null);
-    var version = service.execute();
-    System.out.println(version);
   }
 
 }

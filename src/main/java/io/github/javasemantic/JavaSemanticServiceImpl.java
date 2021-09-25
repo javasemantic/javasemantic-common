@@ -1,5 +1,9 @@
 package io.github.javasemantic;
 
+import org.apache.log4j.BasicConfigurator;
+
+import java.util.ArrayList;
+
 import io.github.javasemantic.commit.engine.CommitEngine;
 import io.github.javasemantic.commit.retrieval.CommitRetrieval;
 import io.github.javasemantic.degenerator.Degenerator;
@@ -10,7 +14,6 @@ import io.github.javasemantic.domain.model.common.Version;
 import io.github.javasemantic.logging.Log;
 import io.github.javasemantic.version.manager.VersionManager;
 import lombok.RequiredArgsConstructor;
-import org.apache.log4j.BasicConfigurator;
 
 @RequiredArgsConstructor
 public class JavaSemanticServiceImpl implements JavaSemanticService {
@@ -20,6 +23,7 @@ public class JavaSemanticServiceImpl implements JavaSemanticService {
   private final VersionManager versionManager;
   private final CommitRetrieval commitRetrieval;
   private final org.apache.maven.plugin.logging.Log mavenLog;
+  private final DirtyCommit lastCommit;
 
   public void init() {
     BasicConfigurator.configure();
@@ -31,7 +35,9 @@ public class JavaSemanticServiceImpl implements JavaSemanticService {
     init();
 
     var projectData = DomainFactory.getProjectData();
-    var dirtyCommits = commitRetrieval.getCommits();
+    var dirtyCommits = new ArrayList<>(commitRetrieval.getCommits());
+    dirtyCommits.add(lastCommit);
+
     for (var dirtyCommit : dirtyCommits) {
       var commit = createCommit(dirtyCommit);
       var result = commitEngine.execute(commit);
