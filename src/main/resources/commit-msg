@@ -1,5 +1,7 @@
 #!/bin/bash
 
-commit_message=$(cat "$1")
+commit_message=$(head $1 -n 1)
+body=$(tail -n +2 $1)
+commit_body=$(echo $body)
 
-%s -f %s io.github.javasemantic:javasemantic-maven-plugin:determine-version -Dgit.commit.message="$commit_message"
+%s -f %s io.github.javasemantic:javasemantic-maven-plugin:determine-version -Dgit.commit.message="$commit_message" -Dgit.commit.body="$commit_body"
