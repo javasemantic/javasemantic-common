@@ -59,16 +59,24 @@ public class Log {
       System.out.printf(
           "[%s] %s: %s%n",
           logObject.getLevel(),
-          logObject.getType(),
+          findClassName(logObject.getType().toString()),
           logObject.getMessage()
       );
     }
   }
 
+  private static String findClassName(String type) {
+
+    var lastIndexOf = type.lastIndexOf(".");
+
+    return type.substring(++lastIndexOf);
+
+  }
+
   private static void printMavenPluginLog(LogObject logObject) {
     var message = String.format(
         "%s: %s",
-        logObject.getType(),
+        findClassName(logObject.getType().toString()),
         logObject.getMessage()
     );
 

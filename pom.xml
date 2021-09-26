@@ -137,22 +137,30 @@
   <build>
       <plugins>
 
-        <!-- Versioning -->
-        <plugin>
-          <groupId>io.github.javasemantic</groupId>
-          <artifactId>javasemantic-maven-plugin</artifactId>
-          <version>${javasemantic-maven-plugin.version}</version>
-          <executions>
-            <!-- On commit, format the modified java files -->
-            <execution>
-              <id>install-hook</id>
-              <goals>
-                <goal>install-hooks</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <!-- -->
+<!--        &lt;!&ndash; Versioning &ndash;&gt;-->
+<!--        <plugin>-->
+<!--          <groupId>io.github.javasemantic</groupId>-->
+<!--          <artifactId>javasemantic-maven-plugin</artifactId>-->
+<!--          <version>${javasemantic-maven-plugin.version}</version>-->
+<!--          <configuration>-->
+<!--            <activate-override-version>true</activate-override-version>-->
+<!--            <override-static-version>0.0.5-SNAPSHOT</override-static-version>-->
+<!--            <override-version-branch-blacklist-items>-->
+<!--              <override-version-branch-blacklist-item>main</override-version-branch-blacklist-item>-->
+<!--              <override-version-branch-blacklist-item>release</override-version-branch-blacklist-item>-->
+<!--            </override-version-branch-blacklist-items>-->
+<!--          </configuration>-->
+<!--          <executions>-->
+<!--            &lt;!&ndash; On commit, format the modified java files &ndash;&gt;-->
+<!--            <execution>-->
+<!--              <id>install-hook</id>-->
+<!--              <goals>-->
+<!--                <goal>install-hooks</goal>-->
+<!--              </goals>-->
+<!--            </execution>-->
+<!--          </executions>-->
+<!--        </plugin>-->
+<!--        &lt;!&ndash; &ndash;&gt;-->
 
         <!-- Compiler -->
         <plugin>
