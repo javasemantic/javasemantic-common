@@ -23,13 +23,13 @@ public class MavenVersionUpdater implements VersionUpdater {
         buildToolAbsolutePath,
         projectBuildFile,
         version);
-    Log.info(MavenVersionUpdater.class, "Updating project version");
-    Log.info(MavenVersionUpdater.class, String.format("Command: %s", command));
+    Log.debug(MavenVersionUpdater.class, "Updating project version");
+    Log.debug(MavenVersionUpdater.class, String.format("Command: %s", command));
 
     try {
       Process process = Runtime.getRuntime().exec(command);
       printProcessToConsole(process);
-      Log.info(MavenVersionUpdater.class, "Updating project version completed");
+      Log.debug(MavenVersionUpdater.class, "Updating project version completed");
       return 0 == process.waitFor();
     } catch (IOException | InterruptedException e) {
       throw new RuntimeException(e.getMessage(), e);
