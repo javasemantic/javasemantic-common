@@ -7,7 +7,7 @@
 
   <groupId>io.github.javasemantic</groupId>
   <artifactId>javasemantic-common</artifactId>
-  <version>0.0.5-SNAPSHOT</version>
+  <version>1.5.1</version>
   <packaging>jar</packaging>
 
   <name>javasemantic</name>
@@ -135,108 +135,108 @@
   </dependencies>
 
   <build>
-      <plugins>
+    <plugins>
 
-<!--        &lt;!&ndash; Versioning &ndash;&gt;-->
-<!--        <plugin>-->
-<!--          <groupId>io.github.javasemantic</groupId>-->
-<!--          <artifactId>javasemantic-maven-plugin</artifactId>-->
-<!--          <version>${javasemantic-maven-plugin.version}</version>-->
-<!--          <configuration>-->
-<!--            <activate-override-version>true</activate-override-version>-->
-<!--            <override-static-version>0.0.5-SNAPSHOT</override-static-version>-->
-<!--            <override-version-branch-blacklist-items>-->
-<!--              <override-version-branch-blacklist-item>main</override-version-branch-blacklist-item>-->
-<!--              <override-version-branch-blacklist-item>release</override-version-branch-blacklist-item>-->
-<!--            </override-version-branch-blacklist-items>-->
-<!--          </configuration>-->
-<!--          <executions>-->
-<!--            &lt;!&ndash; On commit, format the modified java files &ndash;&gt;-->
-<!--            <execution>-->
-<!--              <id>install-hook</id>-->
-<!--              <goals>-->
-<!--                <goal>install-hooks</goal>-->
-<!--              </goals>-->
-<!--            </execution>-->
-<!--          </executions>-->
-<!--        </plugin>-->
-<!--        &lt;!&ndash; &ndash;&gt;-->
+      <!-- Versioning -->
+      <plugin>
+        <groupId>io.github.javasemantic</groupId>
+        <artifactId>javasemantic-maven-plugin</artifactId>
+        <version>${javasemantic-maven-plugin.version}</version>
+        <configuration>
+          <activate-override-version>true</activate-override-version>
+          <override-static-version>0.0.5-SNAPSHOT</override-static-version>
+          <override-version-branch-blacklist-items>
+            <override-version-branch-blacklist-item>main</override-version-branch-blacklist-item>
+            <override-version-branch-blacklist-item>release</override-version-branch-blacklist-item>
+          </override-version-branch-blacklist-items>
+        </configuration>
+        <executions>
+          <!-- On commit, format the modified java files -->
+          <execution>
+            <id>install-hook</id>
+            <goals>
+              <goal>install-hooks</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- -->
 
-        <!-- Compiler -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.1</version>
-          <configuration>
-            <!-- Boilerplate Code -->
-            <annotationProcessorPaths>
-              <path>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-              </path>
-            </annotationProcessorPaths>
-            <!-- -->
-          </configuration>
-        </plugin>
-        <!-- -->
+      <!-- Compiler -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <!-- Boilerplate Code -->
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+          </annotationProcessorPaths>
+          <!-- -->
+        </configuration>
+      </plugin>
+      <!-- -->
 
-        <!-- Testing -->
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>${maven-surefire-plugin.version}</version>
-        </plugin>
-        <!-- -->
+      <!-- Testing -->
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven-surefire-plugin.version}</version>
+      </plugin>
+      <!-- -->
 
-        <plugin>
-          <groupId>org.jacoco</groupId>
-          <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.8.5</version>
-          <configuration>
-            <excludes>
-            </excludes>
-          </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>prepare-agent</goal>
-              </goals>
-            </execution>
-            <execution>
-              <id>report</id>
-              <phase>test</phase>
-              <goals>
-                <goal>report</goal>
-              </goals>
-            </execution>
-            <execution>
-              <id>jacoco-check</id>
-              <goals>
-                <goal>check</goal>
-              </goals>
-              <configuration>
-                <rules>
-                  <rule>
-                    <element>CLASS</element>
-                    <limits>
-                      <limit>
-                        <counter>LINE</counter>
-                        <value>COVEREDRATIO</value>
-                        <minimum>0%</minimum>
-                      </limit>
-                      <limit>
-                        <counter>BRANCH</counter>
-                        <value>COVEREDRATIO</value>
-                        <minimum>0%</minimum>
-                      </limit>
-                    </limits>
-                  </rule>
-                </rules>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-      </plugins>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.5</version>
+        <configuration>
+          <excludes>
+          </excludes>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>jacoco-check</id>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <rule>
+                  <element>CLASS</element>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0%</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0%</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
 
   </build>
 
