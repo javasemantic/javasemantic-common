@@ -7,11 +7,13 @@
 
   <groupId>io.github.javasemantic</groupId>
   <artifactId>javasemantic-common</artifactId>
-  <version>1.5.2</version>
+  <version>0.13.4</version>
   <packaging>jar</packaging>
 
   <name>javasemantic</name>
   <url>https://javasemantic.github.io/</url>
+  <description>This javasemantic artifact houses the logic for the javasemantic plugins.
+  </description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
