@@ -2,5 +2,4 @@
 
 cd %s
 chmod -x ./.git/hooks/post-commit
-git add %s
-git commit --amend --no-edit --no-verify
+git commit --amend -C HEAD --no-verify %s
