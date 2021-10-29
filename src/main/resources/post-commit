@@ -1,5 +1,10 @@
 #!/bin/bash
 
 cd %s
-chmod -x ./.git/hooks/post-commit
-git commit --amend -C HEAD --no-verify %s
+state=$(cat ./.git/hooks/javasemantic-state)
+
+if [[ $state -eq 1 ]]; then
+    git commit --amend -C HEAD --no-verify %s
+fi
+
+echo 0 > ./.git/hooks/javasemantic-state
