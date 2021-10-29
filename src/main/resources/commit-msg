@@ -6,7 +6,8 @@ commit_body=$(echo $body)
 
 %s -f %s io.github.javasemantic:javasemantic-maven-plugin:determine-version -Dgit.commit.message="$commit_message" -Dgit.commit.body="$commit_body"
 
-if [[ $? -eq 0]]; then
-  cd %s
-  echo 1 > ./.git/hooks/javasemantic-state
-fi
+#if [[ $? -eq 0 ]]
+#  then
+#    cd %s
+#    echo 1 > ./.git/hooks/javasemantic-state
+#fi

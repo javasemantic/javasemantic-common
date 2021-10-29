@@ -26,7 +26,8 @@ public class InstallHookImpl implements InstallHook {
     var gitHookDirectory = GitFactory.get().getGitHookPath();
 
     installCommitMsgHook(installHookArguments, gitHookDirectory);
-    installPostCommitHook(installHookArguments, gitHookDirectory);
+    // Todo: find a way to automatically include the updated pom.xml
+    // installPostCommitHook(installHookArguments, gitHookDirectory);
   }
 
   private void installCommitMsgHook(InstallHookArguments installHookArguments,

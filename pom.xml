@@ -7,7 +7,7 @@
 
   <groupId>io.github.javasemantic</groupId>
   <artifactId>javasemantic-common</artifactId>
-  <version>0.13.5</version>
+  <version>0.13.6</version>
   <packaging>jar</packaging>
 
   <name>javasemantic</name>
