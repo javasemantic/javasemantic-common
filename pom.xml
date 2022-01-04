@@ -29,7 +29,7 @@
     <org.eclipse.jgit.version>5.12.0.202106070339-r</org.eclipse.jgit.version>
     <!-- Logging -->
     <slf4j-log4j12.version>1.7.32</slf4j-log4j12.version>
-    <log4j-core.version>2.14.1</log4j-core.version>
+    <log4j-core.version>2.17.1</log4j-core.version>
     <log4j.version>1.2.17</log4j.version>
     <maven-plugin-api.version>3.3.9</maven-plugin-api.version>
     <javasemantic-maven-plugin.version>0.6.4</javasemantic-maven-plugin.version>
